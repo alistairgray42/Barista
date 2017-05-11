@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Player extends PApplet implements MouseListener, KeyListener {
+public class Player extends PApplet{
    /*
     * Player
 Represents the player
