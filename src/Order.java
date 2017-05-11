@@ -5,6 +5,7 @@ public class Order {
 	
 	public Order(){
 		drink = generateRandomDrink(); 
+		//Hello! 
 	}
 	
 	
