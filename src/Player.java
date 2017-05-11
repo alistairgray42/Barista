@@ -23,7 +23,7 @@ Method:
 setPostition(int movement)
 changeOrder(int number)
 Order
-
+Hello
     */
 	
 	private int x, y, w, h;
