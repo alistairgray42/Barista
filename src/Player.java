@@ -30,7 +30,7 @@ Hello
 	private PImage player; 
 	private ArrayList<Order> orders; 
 	private Order currentOrder; 
-	
+	private Drink currentDrink; 
 	
 	public Player(String filename, double x, double y, double w, double h){
 		this.x = (int)x;
@@ -54,6 +54,14 @@ Hello
 	public void moveByAmount(int x, int y) {
 		this.x += x;
 		this.y += y;
+	}
+	public boolean checkCompletion(){
+		if(currentDrink.equals(getDrink())){
+			return true;
+		}
+		else{
+			return false; 
+		}
 	}
 	public void updateCurrentOrder(int current){
 		currentOrder = orders.get(current); 

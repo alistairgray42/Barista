@@ -1,20 +1,23 @@
 
 public class Order {
 	
-	/*private Drink drink;
+	private Drink drink;
 	
 	public Order(){
 		drink = generateRandomDrink(); 
-		//Hello! 
+	
 	}
 	
-	public boolean isComplete(Drink drinkTest){
+	public Drink getDrink(){
+		return drink;
+	}
+	public boolean equals(Drink drinkTest){
 		if(the drink passed in matches the drink in the field){
 			return true;
 		}
 		else{
 			return false;
 		}
-	}*/
+	}
 	
 }
