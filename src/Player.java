@@ -1,8 +1,13 @@
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import processing.core.PApplet;
+import java.util.ArrayList;
 
-public class Player implements MouseListener {
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Player extends PApplet implements MouseListener, KeyListener {
    /*
     * Player
 Represents the player
@@ -22,45 +27,38 @@ Order
     */
 	
 	private int x, y, w, h;
+	private PImage player; 
+	private ArrayList<Order> orders; 
+	private Order currentOrder; 
 	
 	
 	public Player(String filename, double x, double y, double w, double h){
+		this.x = (int)x;
+		this.y = (int)y;
+		this.w = (int)w;
+		this.h = (int)h;
+		orders = new ArrayList<Order>();
+		for(int i = 0; i < getLevel(); i++){
+			orders.add(new Order()); 
+		}
+		setup();
+	}
+	public void setup(){
+		player = loadImage("barista.png"); 
+	}
+	public void moveToLocation(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.w = w;
-		this.h = h; 
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	
+	public void moveByAmount(int x, int y) {
+		this.x += x;
+		this.y += y;
+	}
 	
+	public void updateCurrentOrder(int current){
+		currentOrder = orders.get(current); 
+	}
+
 	
 }
