@@ -38,9 +38,9 @@ Hello
 		this.w = (int)w;
 		this.h = (int)h;
 		orders = new ArrayList<Order>();
-		for(int i = 0; i < getLevel(); i++){
+		/*for(int i = 0; i < getLevel(); i++){
 			orders.add(new Order()); 
-		}
+		}*/
 		setup();
 	}
 	public void setup(){
@@ -55,10 +55,11 @@ Hello
 		this.x += x;
 		this.y += y;
 	}
-	
 	public void updateCurrentOrder(int current){
 		currentOrder = orders.get(current); 
 	}
+	
+
 
 	
 }
