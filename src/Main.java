@@ -17,6 +17,9 @@ public class Main {
 	
 	private PSurfaceAWT.SmoothCanvas processingCanvas;
 	
+	/**
+	 * Mostly pillaged code to set up a CardLayout with title and game
+	 */
 	public Main() {
 		panel2 = new GameArea();
 		panel2.runMe();

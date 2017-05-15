@@ -7,7 +7,10 @@ import java.awt.geom.AffineTransform;
 public class TitleScreen extends JPanel implements ActionListener {
 	
 	private Main w;
-	
+	/**
+	 * Only minorly changed stolen code
+	 * @param w
+	 */
 	public TitleScreen(Main w) {
 		this.w = w;
 		JPanel p = new JPanel();
@@ -16,7 +19,7 @@ public class TitleScreen extends JPanel implements ActionListener {
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));	
 		p.add(Box.createVerticalStrut(300));   // Move down by 300 pixels  
 		
-		JButton button = new JButton("Play the Game!");
+		JButton button = new JButton("excitement");
 		button.addActionListener(this);
 		p.add(button);
 		add(p);
@@ -35,7 +38,7 @@ public class TitleScreen extends JPanel implements ActionListener {
 		g2.scale(ratioX,ratioY);
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
-		g.drawString("The Title", 305, 200);
+		g.drawString("a title", 345, 200);
 		
 		g2.setTransform(af);
 	}

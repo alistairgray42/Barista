@@ -92,6 +92,8 @@ public class GameArea extends PApplet {
 			mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
 			mario.walk(1);
+		if (isPressed(KeyEvent.VK_UP))
+			mario.jump();
 
 		mario.act(obstacles);
 
