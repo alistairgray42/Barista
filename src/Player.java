@@ -26,6 +26,7 @@ public class Player extends PApplet {
 	public Player() {
 		l = new Level(1);
 		orders = new ArrayList<Order>();
+
 		drinks = new ArrayList<Drink>();
 		for (int i = 0; i < 4; i++) {
 			orders.add(l.getOrders().get(i));
@@ -47,6 +48,11 @@ public class Player extends PApplet {
 		/*
 		 * for(int i = 0; i < getLevel(); i++){ orders.add(new Order()); }
 		 */
+
+		for(int i = 0; i < l.getLevel(); i++){
+			orders.add(new Order(l.getLevel())); 
+		}
+
 		setup();
 	}
 
@@ -83,6 +89,7 @@ public class Player extends PApplet {
 		currentDrink = drinks.get(current);
 	}
 	
+
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
@@ -94,5 +101,8 @@ public class Player extends PApplet {
 	public Drink getCurrentDrink() {
 		return currentDrink;
 	}
+
+
+
 }
 

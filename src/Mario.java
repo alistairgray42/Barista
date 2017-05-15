@@ -12,30 +12,21 @@ public class Mario extends MovingImage {
 	public static final int MARIO_HEIGHT = 60;
 
 	private double xVelocity, yVelocity;
-	private boolean onASurface;
 	private double friction;
 	private double gravity;
-	private double jumpStrength;
 
 	public Mario(PImage img, int x, int y) {
 		super(img, x, y, MARIO_WIDTH, MARIO_HEIGHT);
 		xVelocity = 0;
 		yVelocity = 0;
-		onASurface = false;
-		gravity = 0.7;
-		friction = .8;
-		jumpStrength = 15;
+		gravity = 0.8;
+		friction = .9;
 	}
 
 	// METHODS
 	public void walk(int dir) {
 		if (xVelocity <= 10 && xVelocity >= -10)
 			xVelocity += 2*dir;
-	}
-
-	public void jump() {
-		if (onASurface)
-			yVelocity -= jumpStrength;
 	}
 
 	public void act(ArrayList<Shape> obstacles) {
@@ -51,13 +42,11 @@ public class Mario extends MovingImage {
 
 		Rectangle2D.Double strechY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(yVelocity));
 
-		onASurface = false;
 
 		if (yVelocity > 0) {
 			Shape standingSurface = null;
 			for (Shape s : obstacles) {
 				if (s.intersects(strechY)) {
-					onASurface = true;
 					standingSurface = s;
 					yVelocity = 0;
 				}

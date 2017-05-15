@@ -1,4 +1,4 @@
-public class Ingredient {
+public class Ingredient {//fff
 	public final String ingredient; 
 	
 	public Ingredient(String ingredient) {

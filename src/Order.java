@@ -33,13 +33,8 @@ public class Order {
 			hasIce = true;
 		} else {
 			hasIce = false;
-		}
 	}
-
-	public ArrayList<Ingredient> getRecipe() {
-		return recipe;
 	}
-
 	/**
 	 * Randomly generates recipes with an increasing number and variety of ingredients as level increases
 	 * @return ArrayList<Ingredient> representing the Order1's recipe
@@ -95,6 +90,9 @@ public class Order {
 	
 	public boolean getHasIce() {
 		return hasIce;
+	}
+	public ArrayList<Ingredient> getRecipe() {
+		return recipe;
 	}
 
 }
