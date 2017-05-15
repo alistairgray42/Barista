@@ -24,7 +24,7 @@ setPostition(int movement)
 changeOrder(int number)
 Order
 Hello
-    */
+    
 	
 	private int x, y, w, h;
 	private PImage player; 
@@ -38,9 +38,9 @@ Hello
 		this.w = (int)w;
 		this.h = (int)h;
 		orders = new ArrayList<Order>();
-		/*for(int i = 0; i < getLevel(); i++){
+		for(int i = 0; i < getLevel(); i++){
 			orders.add(new Order()); 
-		}*/
+		}
 		setup();
 	}
 	public void setup(){
@@ -69,5 +69,5 @@ Hello
 	
 
 
-	
+	*/
 }

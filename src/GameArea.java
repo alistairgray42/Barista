@@ -14,7 +14,7 @@ public class GameArea extends PApplet {
 
 	private Rectangle screenRect;
 
-	//private Mario mario;
+	private Mario mario;
 	private ArrayList<Shape> obstacles;
 
 	private ArrayList<Integer> keys;
@@ -27,16 +27,19 @@ public class GameArea extends PApplet {
 		keys = new ArrayList<Integer>();
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 		obstacles = new ArrayList<Shape>();
-		obstacles.add(new Rectangle(200,400,400,50));
-		obstacles.add(new Rectangle(0,250,100,50));
-		obstacles.add(new Rectangle(700,250,100,50));
-		obstacles.add(new Rectangle(375,300,50,100));
-		obstacles.add(new Rectangle(300,250,200,50));
+		obstacles.add(new Rectangle(0,550,800,50));
+		obstacles.add(new Rectangle(0,500,5,50));
+		obstacles.add(new Rectangle(795,500,5,50));
+
+		//obstacles.add(new Rectangle(0,250,100,50));
+		//obstacles.add(new Rectangle(700,250,100,50));
+		//obstacles.add(new Rectangle(375,300,50,100));
+		//obstacles.add(new Rectangle(300,250,200,50));
 	}
 
 
 	public void spawnNewMario() {
-		//mario = new Mario(assets.get(0), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
+		mario = new Mario(assets.get(0), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
 	}
 	
 	public void runMe() {
@@ -47,7 +50,7 @@ public class GameArea extends PApplet {
 	// execute once when the program begins
 	public void setup() {
 		//size(0,0,PApplet.P3D);
-		assets.add(loadImage("mario.png"));
+		assets.add(loadImage("Barista.png"));
 		
 		spawnNewMario();
 	}
@@ -77,26 +80,24 @@ public class GameArea extends PApplet {
 			}
 		}
 
-		//mario.draw(this);
+		mario.draw(this);
 
 		popMatrix();
 
 
 		// modifying stuff
 
-		/*
+		
 		if (isPressed(KeyEvent.VK_LEFT))
 			mario.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
 			mario.walk(1);
-		if (isPressed(KeyEvent.VK_UP))
-			mario.jump();
 
 		mario.act(obstacles);
 
 		if (!screenRect.intersects(mario))
 			spawnNewMario();
-		*/
+		
 	}
 
 
