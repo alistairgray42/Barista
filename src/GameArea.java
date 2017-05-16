@@ -22,19 +22,6 @@ public class GameArea extends PApplet
 	
 	private ArrayList<PImage> assets;
 	
-	public final Ingredient espresso = new Ingredient("Espresso Shot", loadImage("EspressoShot.png"));
-
-	public final Ingredient[] base = new Ingredient[] { new Ingredient("Chocolate Syrup", loadImage("Mocha.png")),
-			new Ingredient("Matcha", loadImage("Matcha.png")), new Ingredient("Honey", loadImage("Honey.png")), new Ingredient("Caramel Syrup", loadImage("Caramel.png")),
-			new Ingredient("Vanilla Syrup", loadImage("Vanilla.png")) };
-
-	public final Ingredient[] milk = new Ingredient[] { new Ingredient("Half-and-Half", loadImage("HalfNHalf.png") ),			
-			new Ingredient("Steamed Milk", loadImage("SteamedMilk.png")), new Ingredient("Almond Milk", loadImage("AlmondMilk.png")), new Ingredient("Soymilk", loadImage("SoyMilk.png")),	
-			new Ingredient("Coconut Milk", loadImage("CoconutMilk.png"))};
-
-	public final Ingredient[] topping = new Ingredient[] { new Ingredient("Whipping Cream", loadImage("WhippedCream.png")),			
-			new Ingredient("Cinnamon", loadImage("Cinnamon.png")), new Ingredient("Chocolate Syrup", loadImage("Mocha.png")), new Ingredient("Matcha", loadImage("Matcha.png")),
-			new Ingredient("Caramel Syrup", loadImage("Caramel.png")), new Ingredient("Vanilla Syrup", loadImage("Vanilla.png"))};
 
 	public GameArea() {
 		super();
