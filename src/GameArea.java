@@ -3,9 +3,18 @@
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import processing.core.PApplet;
 import processing.core.PImage;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 
 public class GameArea extends PApplet {
 
@@ -21,20 +30,6 @@ public class GameArea extends PApplet {
 	
 	private ArrayList<PImage> assets;
 	
-	public final Ingredient espresso = new Ingredient("Espresso Shot", loadImage("EspressoShot.png"));
-
-	public final Ingredient[] base = new Ingredient[] { new Ingredient("Chocolate Syrup", loadImage("Mocha.png")),
-			new Ingredient("Matcha", loadImage("Matcha.png")), new Ingredient("Honey", loadImage("Honey.png")), new Ingredient("Caramel Syrup", loadImage("Caramel.png")),
-			new Ingredient("Vanilla Syrup", loadImage("Vanilla.png")) };
-
-	public final Ingredient[] milk = new Ingredient[] { new Ingredient("Half-and-Half", loadImage("HalfNHalf.png") ),			
-			new Ingredient("Steamed Milk", loadImage("SteamedMilk.png")), new Ingredient("Almond Milk", loadImage("AlmondMilk.png")), new Ingredient("Soymilk", loadImage("SoyMilk.png")),	
-			new Ingredient("Coconut Milk", loadImage("CoconutMilk.png"))};
-
-	public final Ingredient[] topping = new Ingredient[] { new Ingredient("Whipping Cream", loadImage("WhippedCream.png")),			
-			new Ingredient("Cinnamon", loadImage("Cinnamon.png")), new Ingredient("Chocolate Syrup", loadImage("Mocha.png")), new Ingredient("Matcha", loadImage("Matcha.png")),
-			new Ingredient("Caramel Syrup", loadImage("Caramel.png")), new Ingredient("Vanilla Syrup", loadImage("Vanilla.png"))};
-
 	public GameArea() {
 		super();
 		assets = new ArrayList<PImage>();
@@ -44,15 +39,28 @@ public class GameArea extends PApplet {
 		obstacles.add(new Rectangle(0,550,800,50));
 		obstacles.add(new Rectangle(0,500,5,50));
 		obstacles.add(new Rectangle(795,500,5,50));
-		Order.initializeEspresso(espresso);
-		Order.initializeBase(base);
-		Order.initializeMilk(milk);
-		Order.initializeTopping(topping);
+		//PlaySound(); 
 		//obstacles.add(new Rectangle(0,250,100,50));
 		//obstacles.add(new Rectangle(700,250,100,50));
 		//obstacles.add(new Rectangle(375,300,50,100));
 		//obstacles.add(new Rectangle(300,250,200,50));
 	}
+	
+	/*public void setup(){
+		
+	}*/
+	/*public static void PlaySound() {
+	    InputStream in;
+	    try {
+	        in = new FileInputStream(new File("audio/JazzMusic.mp3"));
+	        AudioStream audios = new AudioStream(in);
+	        AudioPlayer.player.start(audios);
+	    } catch (Exception e) {
+	        JOptionPane.showMessageDialog(null, e);
+
+	    }
+
+	}*/
 
 	public void spawnNewMario() {
 		mario = new Mario(assets.get(0), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
