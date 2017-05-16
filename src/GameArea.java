@@ -15,11 +15,8 @@ public class GameArea extends PApplet
 	public static final int DRAWING_HEIGHT = 600;
 
 	private Rectangle screenRect;
-
 	private Player player;
-
 	private ArrayList<Integer> keys;
-	
 	private ArrayList<PImage> assets;
 	
 

@@ -1,27 +1,25 @@
 import processing.core.PImage;
 
 public class Ingredient{//fff
-	private final String ingredient; 
-	private PImage imageIngredient; 
+	private final String name;
 	
-	public Ingredient(String ingredient, PImage imageIngredient) {
-		this.ingredient = ingredient;
-		this.imageIngredient = imageIngredient;
-		
+	public Ingredient(String name)
+	{
+		this.name = name;
 	}
 	/**
 	 * @param other Ingredient object to be compared to this Ingredient object
 	 * @return true if other Ingredient object equals this Ingredient object
 	 */
 	public boolean equals(Ingredient other) {
-		return this.ingredient.equals(other.ingredient);
+		return this.name.equals(other.name);
 	}
 
 	public String getIngredientName() {
-		return ingredient;
+		return name;
 	}
 	
 	public String toString() {
-		return ingredient;
+		return name;
 	}
 }
