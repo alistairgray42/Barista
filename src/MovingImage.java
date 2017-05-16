@@ -12,7 +12,7 @@ import processing.core.PImage;
  
 public class MovingImage extends Rectangle2D.Double {
 	
-	// FIELDS
+	// FIELDS 
 	private PImage image;
 	
 	// CONSTRUCTORS

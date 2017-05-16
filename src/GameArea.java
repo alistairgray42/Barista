@@ -70,7 +70,7 @@ public class GameArea extends PApplet
 	// The statements in draw() are executed until the 
 	// program is stopped. Each statement is executed in 
 	// sequence and after the last line is read, the first 
-	// line is executed again.
+	// line is executed again. 
 	public void draw() {
 
 		// drawing stuff

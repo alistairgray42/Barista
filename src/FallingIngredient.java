@@ -4,6 +4,7 @@ import processing.core.PImage;
 
 public class FallingIngredient extends MovingImage
 {
+	//
 	private Ingredient ingredient;
 	private PImage image;
 	
