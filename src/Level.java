@@ -24,7 +24,9 @@ public class Level {
 	public void incrementLevel() {
 		level++;
 	}
-	
+	public Order getOrder(int num){
+		return orders.get(num); 
+	}
 	/**
 	 * Retrives the next Order1 from the list of Order1s to be completed and deletes this Order1 from the list.   
 	 * @return a reference to the next Order1 to be competed or null if there are no more Order1s to be completed
