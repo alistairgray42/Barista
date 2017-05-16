@@ -3,25 +3,34 @@ import java.util.logging.Level;
 
 public class Order {
 
-	public static final Ingredient espresso = new Ingredient("Espresso Shot");
+/*	public static final Ingredient espresso = new Ingredient("Espresso Shot", "EspressoShot.png");
 
-	public static final Ingredient[] base = new Ingredient[] { new Ingredient("Chocolate Syrup"),
-			new Ingredient("Matcha"), new Ingredient("Honey"), new Ingredient("Caramel Syrup"),
-			new Ingredient("Vanilla Syrup") };
+	public static final Ingredient[] base = new Ingredient[] { new Ingredient("Chocolate Syrup", "Mocha.png"),
+			new Ingredient("Matcha", "Matcha.png"), new Ingredient("Honey", "Honey.png"), new Ingredient("Caramel Syrup", "Caramel.png"),
+			new Ingredient("Vanilla Syrup", "Vanilla.png") };
 
-	public static final Ingredient[] milk = new Ingredient[] { new Ingredient("Half-and-Half"),
-			new Ingredient("Steamed Milk"), new Ingredient("Almond Milk"), new Ingredient("Soymilk"),
-			new Ingredient("Coconut Milk") };
+	public static final Ingredient[] milk = new Ingredient[] { new Ingredient("Half-and-Half", "HalfNHalf.png" ),			
+			new Ingredient("Steamed Milk", "SteamedMilk.png"), new Ingredient("Almond Milk", "AlmondMilk.png"), new Ingredient("Soymilk", "SoyMilk.png"),	
+			new Ingredient("Coconut Milk", "CoconutMilk.png")};
 
-	public static final Ingredient[] topping = new Ingredient[] { new Ingredient("Whipping Cream"),
-			new Ingredient("Cinnamon"), new Ingredient("Chocolate Syrup"), new Ingredient("Matcha"),
-			new Ingredient("Caramel Syrup"), new Ingredient("Vanilla Syrup") };
-
+	public static final Ingredient[] topping = new Ingredient[] { new Ingredient("Whipping Cream", "WhippedCream.png"),			
+			new Ingredient("Cinnamon", "Cinnamon.png"), new Ingredient("Chocolate Syrup", "Mocha.png"), new Ingredient("Matcha", "Matcha.png"),
+			new Ingredient("Caramel Syrup", "Caramel.png"), new Ingredient("Vanilla Syrup", "Vanilla.png") };*/
+	
+	public static Ingredient espresso; 
+	
+	public static Ingredient[] base;
+	
+	public static Ingredient[] milk;
+	
+	public static Ingredient[] topping;
+	
 	private boolean hasIce;
 	
 	private boolean isCompleted;
 
 	private ArrayList<Ingredient> recipe;
+	
 
 	public Order(int level) {
 		isCompleted = false;
@@ -33,7 +42,24 @@ public class Order {
 			hasIce = true;
 		} else {
 			hasIce = false;
+		}
 	}
+	
+	
+	public static void  initializeEspresso(Ingredient ingredient){
+		espresso = ingredient; 
+	}
+	
+	public static void initializeBase(Ingredient[] ingredient){
+		base = ingredient;
+	}
+	
+	public static void initializeMilk(Ingredient[] ingredient){
+		milk = ingredient;
+	}
+	
+	public static void initializeTopping(Ingredient[] ingredient){
+		topping = ingredient; 
 	}
 	/**
 	 * Randomly generates recipes with an increasing number and variety of ingredients as level increases
