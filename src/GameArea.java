@@ -26,10 +26,12 @@ public class GameArea extends PApplet
 	private Player player;
 	private ArrayList<Integer> keys;
 	private ArrayList<PImage> assets;
+	private ArrayList<FallingIngredient> ingredients;
 	public GameArea() {
 		super();
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
+		ingredients = new ArrayList<FallingIngredient>();
 	}
 	
 	/*public void setup(){
@@ -48,7 +50,7 @@ public class GameArea extends PApplet
 
 	}*/
 
-	public void spawnNewMario() {
+	public void newPlayer() {
 		player = new Player(assets.get(0), 100, 100, 50, 50);
 	}
 	
@@ -62,7 +64,7 @@ public class GameArea extends PApplet
 		//size(0,0,PApplet.P3D);
 		assets.add(loadImage("Barista.png"));
 		
-		spawnNewMario();
+		newPlayer();
 	}
 
 	// The statements in draw() are executed until the 
@@ -84,7 +86,12 @@ public class GameArea extends PApplet
 
 		fill(100);
 		rect(0,550,800,50);
-
+		
+		for (int i = 1; i < ingredients.size(); i++)
+		{
+			FallingIngredient f = ingredients.get(i);
+			image(assets.get(i), (float)f.getX(), (float)f.getY(), FallingIngredient.WIDTH, FallingIngredient.HEIGHT);
+		}
 
 		popMatrix();
 
@@ -99,7 +106,7 @@ public class GameArea extends PApplet
 		player.act();
 
 		if (!screenRect.intersects(player.bounds()))
-			spawnNewMario();
+			newPlayer();
 		image(assets.get(0), (float)player.getX(), (float)player.getY(), (float)player.width, (float)player.height);
 
 	}
@@ -117,6 +124,10 @@ public class GameArea extends PApplet
 		return keys.contains(code);
 	}
 
-
+	public void addIngredient(FallingIngredient f)
+	{
+		assets.add(f.getImage());
+	}
+	
 }
 
