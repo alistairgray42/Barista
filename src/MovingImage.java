@@ -16,7 +16,7 @@ public class MovingImage extends Rectangle2D.Double {
 	private PImage image;
 	
 	// CONSTRUCTORS
-	public MovingImage(PImage img, int x, int y, int w, int h) {
+	public MovingImage(PImage img, double x, double y, double w, double h) {
 		super(x,y,w,h);
 		image = img;
 	}

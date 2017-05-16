@@ -3,19 +3,20 @@
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class GameArea extends PApplet {
+public class GameArea extends PApplet
+{
 
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
 
 	private Rectangle screenRect;
 
-	private Mario mario;
-	private ArrayList<Shape> obstacles;
+	private Player player;
 
 	private ArrayList<Integer> keys;
 	
@@ -26,20 +27,11 @@ public class GameArea extends PApplet {
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
 		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
-		obstacles = new ArrayList<Shape>();
-		obstacles.add(new Rectangle(0,550,800,50));
-		obstacles.add(new Rectangle(0,500,5,50));
-		obstacles.add(new Rectangle(795,500,5,50));
-
-		//obstacles.add(new Rectangle(0,250,100,50));
-		//obstacles.add(new Rectangle(700,250,100,50));
-		//obstacles.add(new Rectangle(375,300,50,100));
-		//obstacles.add(new Rectangle(300,250,200,50));
 	}
 
 
 	public void spawnNewMario() {
-		mario = new Mario(assets.get(0), DRAWING_WIDTH/2-Mario.MARIO_WIDTH/2,50);
+		player = new Player(assets.get(0), 100, 100, 50, 50);
 	}
 	
 	public void runMe() {
@@ -73,35 +65,26 @@ public class GameArea extends PApplet {
 		scale(ratioX, ratioY);
 
 		fill(100);
-		for (Shape s : obstacles) {
-			if (s instanceof Rectangle) {
-				Rectangle r = (Rectangle)s;
-				rect(r.x,r.y,r.width,r.height);
-			}
-		}
+		rect(0,550,800,50);
 
-		mario.draw(this);
 
 		popMatrix();
 
-
 		// modifying stuff
-
 		
 		if (isPressed(KeyEvent.VK_LEFT))
-			mario.walk(-1);
+			player.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
-			mario.walk(1);
+			player.walk(1);
 		if (isPressed(KeyEvent.VK_UP))
-			mario.jump();
+			player.jump();
+		player.act();
 
-		mario.act(obstacles);
-
-		if (!screenRect.intersects(mario))
+		if (!screenRect.intersects(player.bounds()))
 			spawnNewMario();
-		
-	}
+		image(assets.get(0), (float)player.getX(), (float)player.getY(), (float)player.width, (float)player.height);
 
+	}
 
 	public void keyPressed() {
 		keys.add(keyCode);
