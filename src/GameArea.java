@@ -1,5 +1,3 @@
-
-
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
@@ -15,9 +13,7 @@ import processing.core.PImage;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-
-public class GameArea extends PApplet
-{
+public class GameArea extends PApplet {
 
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -27,76 +23,91 @@ public class GameArea extends PApplet
 	private ArrayList<Integer> keys;
 	private ArrayList<PImage> assets;
 	private ArrayList<FallingIngredient> ingredients;
+
 	public GameArea() {
 		super();
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
 		ingredients = new ArrayList<FallingIngredient>();
 	}
-	
-	/*public void setup(){
-		
-	}*/
-	/*public static void PlaySound() {
-	    InputStream in;
-	    try {
-	        in = new FileInputStream(new File("audio/JazzMusic.mp3"));
-	        AudioStream audios = new AudioStream(in);
-	        AudioPlayer.player.start(audios);
-	    } catch (Exception e) {
-	        JOptionPane.showMessageDialog(null, e);
 
-	    }
-
-	}*/
+	/*
+	 * public void setup(){
+	 * 
+	 * }
+	 */
+	/*
+	 * public static void PlaySound() { InputStream in; try { in = new
+	 * FileInputStream(new File("audio/JazzMusic.mp3")); AudioStream audios =
+	 * new AudioStream(in); AudioPlayer.player.start(audios); } catch (Exception
+	 * e) { JOptionPane.showMessageDialog(null, e);
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
 
 	public void newPlayer() {
 		player = new Player(assets.get(0), 100, 100, 50, 50);
 	}
-	
+
 	public void runMe() {
 		runSketch();
 	}
 
-	// The statements in the setup() function 
+	// The statements in the setup() function
 	// execute once when the program begins
 	public void setup() {
-		//size(0,0,PApplet.P3D);
+		// size(0,0,PApplet.P3D);
 		assets.add(loadImage("Barista.png"));
-		
+
+		Order.initializeEspresso(new Ingredient("Espresso Shot", "EspressoShot.png"));
+
+		Order.initializeBase(new Ingredient[] { new Ingredient("Chocolate Syrup", "Mocha.png"),
+				new Ingredient("Matcha", "Matcha.png"), new Ingredient("Honey", "Honey.png"),
+				new Ingredient("Caramel Syrup", "Caramel.png"), new Ingredient("Vanilla Syrup", "Vanilla.png") });
+
+		Order.initializeMilk(new Ingredient[] { new Ingredient("Half-and-Half", "HalfNHalf.png"),
+				new Ingredient("Steamed Milk", "SteamedMilk.png"), new Ingredient("Almond Milk", "AlmondMilk.png"),
+				new Ingredient("Soymilk", "SoyMilk.png"), new Ingredient("Coconut Milk", "CoconutMilk.png") });
+
+		Order.initializeTopping(new Ingredient[] { new Ingredient("Whipping Cream", "WhippedCream.png"),
+				new Ingredient("Cinnamon", "Cinnamon.png"), new Ingredient("Chocolate Syrup", "Mocha.png"),
+				new Ingredient("Matcha", "Matcha.png"), new Ingredient("Caramel Syrup", "Caramel.png"),
+				new Ingredient("Vanilla Syrup", "Vanilla.png") });
+
 		newPlayer();
 	}
 
-	// The statements in draw() are executed until the 
-	// program is stopped. Each statement is executed in 
-	// sequence and after the last line is read, the first 
-	// line is executed again. 
+	// The statements in draw() are executed until the
+	// program is stopped. Each statement is executed in
+	// sequence and after the last line is read, the first
+	// line is executed again.
 	public void draw() {
 
 		// drawing stuff
 
-		background(0,255,255);   
+		background(0, 255, 255);
 
 		pushMatrix();
 
-		float ratioX = (float)width/DRAWING_WIDTH;
-		float ratioY = (float)height/DRAWING_HEIGHT;
+		float ratioX = (float) width / DRAWING_WIDTH;
+		float ratioY = (float) height / DRAWING_HEIGHT;
 
 		scale(ratioX, ratioY);
 
 		fill(100);
-		rect(0,550,800,50);
-		
-		for (int i = 1; i < ingredients.size(); i++)
-		{
+		rect(0, 550, 800, 50);
+
+		for (int i = 1; i < ingredients.size(); i++) {
 			FallingIngredient f = ingredients.get(i);
-			image(assets.get(i), (float)f.getX(), (float)f.getY(), FallingIngredient.WIDTH, FallingIngredient.HEIGHT);
+			image(assets.get(i), (float) f.getX(), (float) f.getY(), FallingIngredient.WIDTH, FallingIngredient.HEIGHT);
 		}
 
 		popMatrix();
 
 		// modifying stuff
-		
+
 		if (isPressed(KeyEvent.VK_LEFT))
 			player.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
@@ -107,7 +118,7 @@ public class GameArea extends PApplet
 
 		if (!screenRect.intersects(player.bounds()))
 			newPlayer();
-		image(assets.get(0), (float)player.getX(), (float)player.getY(), (float)player.width, (float)player.height);
+		image(assets.get(0), (float) player.getX(), (float) player.getY(), (float) player.width, (float) player.height);
 
 	}
 
@@ -116,7 +127,7 @@ public class GameArea extends PApplet
 	}
 
 	public void keyReleased() {
-		while(keys.contains(keyCode))
+		while (keys.contains(keyCode))
 			keys.remove(new Integer(keyCode));
 	}
 
@@ -124,10 +135,8 @@ public class GameArea extends PApplet
 		return keys.contains(code);
 	}
 
-	public void addIngredient(FallingIngredient f)
-	{
+	public void addIngredient(FallingIngredient f) {
 		assets.add(f.getImage());
 	}
-	
-}
 
+}

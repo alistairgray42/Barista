@@ -10,10 +10,9 @@ public class Drink {
 	}
 
 	/**
-	 * Adds an Ingredient to the drink and checks if the updated drink follows the order's recipe so far
+	 * Adds an Ingredient to the drink
 	 * @pre this Drink object (before adding the Ingredient) must follow the order's recipe so far
 	 * @param i Ingredient to be added
-	 * @return true if the drink equals the order's recipe so far, false if otherwise.
 	 */
 	public void add(Ingredient i) {
 		drinkComponents.add(i);
@@ -29,7 +28,6 @@ public class Drink {
 	public ArrayList<Ingredient> getDrinkComponents() {
 		return drinkComponents;
 	}
-	
 	
 	public String toString() {
 		String a = "Ingredients: ";

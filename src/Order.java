@@ -35,8 +35,7 @@ public class Order {
 	public Order(int level) {
 		isCompleted = false;
 		
-		//recipe = generateOrder1(level);
-		recipe = generateOrder2();
+		recipe = generateOrder(level);
 		
 		if (Math.random() <= 0.5) {
 			hasIce = true;
@@ -46,7 +45,7 @@ public class Order {
 	}
 	
 	
-	public static void  initializeEspresso(Ingredient ingredient){
+	public static void initializeEspresso(Ingredient ingredient){
 		espresso = ingredient; 
 	}
 	
@@ -65,7 +64,7 @@ public class Order {
 	 * Randomly generates recipes with an increasing number and variety of ingredients as level increases
 	 * @return ArrayList<Ingredient> representing the Order1's recipe
 	 */
-	private ArrayList<Ingredient> generateOrder1(int level) {
+	private ArrayList<Ingredient> generateOrder(int level) {
 		ArrayList<Ingredient> recipe = new ArrayList<Ingredient>();
 		
 		//expresso
@@ -85,6 +84,7 @@ public class Order {
 		return recipe;
 	}
 	
+	/*
 	private ArrayList<Ingredient> generateOrder2() {
 		//Espresso Shot, Caramel Syrup, Almond Milk, Cinnamon
 		ArrayList<Ingredient> recipe = new ArrayList<Ingredient>();
@@ -94,7 +94,7 @@ public class Order {
 		recipe.add(topping[1]);
 		return recipe; 
 	}
-	
+	*/
 	
 	public String toString() {
 		String a =  "recipe: ";
@@ -106,7 +106,7 @@ public class Order {
 		return a;
 	}
 	
-	public boolean getIsCompleted() {
+	public boolean isCompleted() {
 		return isCompleted;
 	}
 	

@@ -13,7 +13,7 @@ import processing.core.PImage;
 public class Player extends MovingImage {
 	/*
 	 * Player Represents the player Details: Position Controlled by mouse Order
-	 * # Controlled by 1/2/3/4 keys Avatar Image Method: setPostition(int
+	 * # Controlled by 1/2/3/4 keys Avatar Image Method: setPosition(int
 	 * movement) changeOrder(int number) Order Hello
 	 */
 	private PImage player;
@@ -56,6 +56,7 @@ public class Player extends MovingImage {
 	{
 		yVelocity -= 2 * jumpStrength;
 	}
+	
 	/**
 	 * Move to a specific location on the screen
 	 * @param x x-pos
@@ -93,7 +94,6 @@ public class Player extends MovingImage {
 	 * Add ingredient to the drink the barista is currently making
 	 * @param i Ingredient that the player touches and wants to add to the drink
 	 */
-	
 	public void addIngredient(Ingredient i) {
 		currentDrink.add(i);
 	}

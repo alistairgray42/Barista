@@ -2,10 +2,12 @@ import processing.core.PImage;
 
 public class Ingredient{//fff
 	private final String name;
+	private final String filename;
 	
-	public Ingredient(String name)
+	public Ingredient(String name, String filename)
 	{
 		this.name = name;
+		this.filename = filename;
 	}
 	/**
 	 * @param other Ingredient object to be compared to this Ingredient object
@@ -17,6 +19,10 @@ public class Ingredient{//fff
 
 	public String getIngredientName() {
 		return name;
+	}
+	
+	public String getFilename() {
+		return filename;
 	}
 	
 	public String toString() {

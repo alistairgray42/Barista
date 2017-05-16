@@ -27,11 +27,12 @@ public class Level {
 	public Order getOrder(int num){
 		return orders.get(num); 
 	}
+	
 	/**
-	 * Retrives the next Order1 from the list of Order1s to be completed and deletes this Order1 from the list.   
-	 * @return a reference to the next Order1 to be competed or null if there are no more Order1s to be completed
+	 * Retrieves the next Order from the list of Orders to be completed and deletes this Order from the list.   
+	 * @return a reference to the next Order to be competed or null if there are no more Orders to be completed
 	 */
-	public Order getNextOrder1() {
+	public Order getNextOrder() {
 		if (orders.isEmpty()) {
 			return null;
 		}

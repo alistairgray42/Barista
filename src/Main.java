@@ -39,7 +39,7 @@ public class Main {
 	    
 	    window.getContentPane().removeAll();
 	    
-		panel1 = new TitleScreen(this);    
+		panel1 = new TitleScreen(this); //(new ImageIcon("/Barista/image/CashRegistar.png")).getImage()   
 	    panel2 = new GameArea();
 	    
 	    cardPanel.add(panel1,"1");
