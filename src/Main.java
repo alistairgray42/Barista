@@ -55,6 +55,8 @@ public class Main {
 	public static void main(String[] args)
 	{
 		Main m = new Main();
+		
+		OrderGenerator o = new OrderGenerator(); 
 	}
   
 	public void changePanel() {

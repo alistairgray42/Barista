@@ -3,10 +3,18 @@
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import processing.core.PApplet;
 import processing.core.PImage;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 
 public class GameArea extends PApplet
 {
@@ -18,14 +26,27 @@ public class GameArea extends PApplet
 	private Player player;
 	private ArrayList<Integer> keys;
 	private ArrayList<PImage> assets;
-	
-
 	public GameArea() {
 		super();
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
-		screenRect = new Rectangle(0,0,DRAWING_WIDTH,DRAWING_HEIGHT);
 	}
+	
+	/*public void setup(){
+		
+	}*/
+	/*public static void PlaySound() {
+	    InputStream in;
+	    try {
+	        in = new FileInputStream(new File("audio/JazzMusic.mp3"));
+	        AudioStream audios = new AudioStream(in);
+	        AudioPlayer.player.start(audios);
+	    } catch (Exception e) {
+	        JOptionPane.showMessageDialog(null, e);
+
+	    }
+
+	}*/
 
 	public void spawnNewMario() {
 		player = new Player(assets.get(0), 100, 100, 50, 50);
