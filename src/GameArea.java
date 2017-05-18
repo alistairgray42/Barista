@@ -197,7 +197,7 @@ public class GameArea extends PApplet
 		}
 		if (isPressed(81))
 			player.clearCurrentDrink();
-		player.act();//
+		player.act();
 
 		if (!screenRect.intersects(player.bounds()))
 			newPlayer();
