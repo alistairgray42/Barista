@@ -16,7 +16,7 @@ public class Player extends MovingImage {
 	 * # Controlled by 1/2/3/4 keys Avatar Image Method: setPostition(int
 	 * movement) changeOrder(int number) Order Hello
 	 */
-	private PImage player;
+	private PImage player;//
 	private ArrayList<Order> orders;
 	private ArrayList<Drink> drinks;
 	private int currentOrder;
