@@ -14,7 +14,6 @@ public class Main {
 	
 	private TitleScreen panel1;    
 	private GameArea panel2;
-	private ControlPanel panel3;
 	
 	private PSurfaceAWT.SmoothCanvas processingCanvas;
 	
