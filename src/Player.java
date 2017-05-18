@@ -14,7 +14,7 @@ public class Player extends MovingImage {
 	/*
 	 * Player Represents the player Details: Position Controlled by mouse Order
 	 * # Controlled by 1/2/3/4 keys Avatar Image Method: setPostition(int
-	 * movement) changeOrder(int number) Order Hello ...
+	 * movement) changeOrder(int number) Order Hello 
 	 */
 	private PImage player;
 	private ArrayList<Order> orders;
@@ -26,7 +26,7 @@ public class Player extends MovingImage {
 	private double xVelocity = 0;
 	private double yVelocity = 0;
 	private double friction = .8;
-	private double gravity = .3;
+	private double gravity = .4;
 	private double jumpStrength = .6;
 
 	public Player(PImage image, double x, double y, double w, double h) {
@@ -54,7 +54,7 @@ public class Player extends MovingImage {
 
 	public void jump()
 	{
-		if (yVelocity > -10 * gravity) yVelocity -= 2 * jumpStrength;
+		yVelocity -= 2 * jumpStrength;
 	}
 	/**
 	 * Move to a specific location on the screen
@@ -98,6 +98,9 @@ public class Player extends MovingImage {
 		drinks.get(currentDrink).add(i);
 	}
 
+	/*TODO: do this better
+	 * 
+	 */
 	public boolean checkCompletion()
 	{
 		Drink drink = drinks.get(currentDrink);
@@ -165,7 +168,7 @@ public class Player extends MovingImage {
 		// ***********Y AXIS***********
 
 		yVelocity += gravity; // GRAVITY
-		if (y >= 450 && yVelocity >= 0) yVelocity = 0;
+		if (y >= 450 && yVelocity >= 0) yVelocity = -20 * gravity;
 		if (y <= 1) yVelocity = 20 * gravity;
 		y += yVelocity;
 
