@@ -19,8 +19,8 @@ public class Player extends MovingImage {
 	private PImage player;
 	private ArrayList<Order> orders;
 	private ArrayList<Drink> drinks;
-	private Order currentOrder;
-	private Drink currentDrink;
+	private int currentOrder;
+	private int currentDrink;
 	boolean currDrinkCompleted;
 	private Level l;
 	private double xVelocity = 0;
@@ -80,9 +80,10 @@ public class Player extends MovingImage {
 	 * Check to see whether the barista completed the current order
 	 */
 	public boolean checkCompletion() {
-		if (currentDrink.equals(currentOrder)
-				&& currentDrink.getDrinkComponents().size() == currentOrder.getRecipe().size()) {
-			currentOrder.setIsCompleted(true);
+		if (currentDrink == currentOrder
+				&& drinks.get(currentDrink).getDrinkComponents().size() == orders.get(currentOrder).getRecipe().size()) 
+		{
+			orders.get(currentOrder).setIsCompleted(true);
 			return true;
 		} else {
 			return false;
@@ -95,16 +96,16 @@ public class Player extends MovingImage {
 	 */
 	
 	public void addIngredient(Ingredient i) {
-		currentDrink.add(i);
+		drinks.get(currentDrink).add(i);
 	}
 
 	/**
 	 * Add more ingredients to the current drink
 	 * @param current the current drink that the player is currently making in the list of orders
 	 */
-	public void updateCurrentOrder(int current){
-		currentOrder = orders.get(current);
-		currentDrink = drinks.get(current);
+	public void updateCurrentOrder(int current)
+	{
+		currentOrder = current;
 	}
 	
 	/**	
@@ -124,8 +125,13 @@ public class Player extends MovingImage {
 	/**
 	 * Gives the current drink that the barista is making
 	 */
-	public Drink getCurrentDrink() {
+	public int getCurrentDrink() {
 		return currentDrink;
+	}
+	
+	public int getCurrentOrder()
+	{
+		return currentOrder;
 	}
 
 	public void act()
@@ -134,7 +140,7 @@ public class Player extends MovingImage {
 		// ***********Y AXIS***********
 
 		yVelocity += gravity; // GRAVITY
-		if (y >= 465 && yVelocity >= 0) yVelocity = -20 * gravity;
+		if (y >= 450 && yVelocity >= 0) yVelocity = -20 * gravity;
 		if (y <= 1) yVelocity = 20 * gravity;
 		y += yVelocity;
 
@@ -142,7 +148,7 @@ public class Player extends MovingImage {
 
 		xVelocity *= friction;
 		if (x <= 1) xVelocity = 20 * gravity;
-		if (x >= 749) xVelocity = -20 * gravity;
+		if (x >= 549) xVelocity = -20 * gravity;
 		x += xVelocity;
 
 	}
