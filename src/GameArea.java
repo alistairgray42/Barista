@@ -68,10 +68,10 @@ public class GameArea extends PApplet
 	public void newPlayer() 
 	{
 		player = new Player(assets.get(0), 100, 100, 50, 50);
-		player.getOrders().add(new Order(1));
-		player.getOrders().add(new Order(1));
-		player.getOrders().add(new Order(1));
-		player.getOrders().add(new Order(1));
+		player.getOrders().add(Order.randomOrder(1));
+		player.getOrders().add(Order.randomOrder(1));
+		player.getOrders().add(Order.randomOrder(1));
+		player.getOrders().add(Order.randomOrder(1));
 		
 		player.getDrinks().add(new Drink(false));
 		player.getDrinks().add(new Drink(false));
@@ -119,7 +119,10 @@ public class GameArea extends PApplet
 					new Ingredient("Vanilla Syrup", loadImage("image/Vanilla.png"))};
 			
 		
-		assets.add(loadImage("Barista.png"));
+		assets.add(loadImage("image/Barista.png"));
+		assets.add(loadImage("image/check.png"));
+		assets.add(loadImage("image/x.png"));
+
 		newPlayer();
 		
 	}
@@ -210,11 +213,19 @@ public class GameArea extends PApplet
 		text(player.getOrders().get(player.getCurrentOrder()).getNextIngredient().getIngredientName(), 705, 40);
 		*/
 		Order currentOrder = player.getOrders().get(player.getCurrentOrder());
-		for (int i = 0; i < currentOrder.getLength(); i++)
-		{
-			text(currentOrder.getRecipe().get(i).getIngredientName(), 605, 40 + 20 * i);
-		}
 		Drink currentDrink = player.getDrinks().get(player.getCurrentDrink());
+
+		for (int i = 0; i < currentOrder.getLength(); i++)
+			text(currentOrder.getRecipe().get(i).getIngredientName(), 615, 40 + 20 * i);
+		
+		if (currentOrder.getLength() >= currentDrink.getLength())
+			for (int i = 0; i < currentDrink.getLength(); i++)
+			{
+				if (currentOrder.getRecipe().get(i).getIngredientName() == currentDrink.getDrinkComponents().get(i).getIngredientName())
+					image(assets.get(1), 605f, 30f + 20 * i, 10f, 10f);
+				else image(assets.get(2), 605f, 30f + 20 * i, 10f, 10f);
+			}
+		
 		for (int i = 0; i < currentDrink.getLength(); i++)
 		{
 			text(currentDrink.getDrinkComponents().get(i).getIngredientName(), 605, 160 + 20 * i);
@@ -234,7 +245,7 @@ public class GameArea extends PApplet
 
 	public boolean isPressed(Integer code) {
 		return keys.contains(code);
-	}//hi
+	}
 
 	public void addIngredient(FallingIngredient f)
 	{

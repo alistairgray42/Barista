@@ -131,4 +131,11 @@ public class Order {
 	{
 		return length;
 	}
+	
+	public static Order randomOrder(int level)
+	{
+		Order o = new Order(level);
+		o.recipe = o.generateOrder1(level);
+		return o;
+	}
 }
