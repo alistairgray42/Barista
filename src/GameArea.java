@@ -70,13 +70,13 @@ public class GameArea extends PApplet
 		player = new Player(assets.get(0), 100, 100, 50, 50);
 		player.getOrders().add(new Order(1));
 		player.getOrders().add(new Order(1));
-		//player.getOrders().add(new Order(1));
-		//player.getOrders().add(new Order(1));
+		player.getOrders().add(new Order(1));
+		player.getOrders().add(new Order(1));
 		
 		player.getDrinks().add(new Drink(false));
 		player.getDrinks().add(new Drink(false));
-		//player.getDrinks().add(new Drink(false));
-		//player.getDrinks().add(new Drink(false));
+		player.getDrinks().add(new Drink(false));
+		player.getDrinks().add(new Drink(false));
 
 	}
 	
@@ -198,7 +198,7 @@ public class GameArea extends PApplet
 
 		if (!screenRect.intersects(player.bounds()))
 			newPlayer();
-		while (ingredients.size() < 4)
+		while (ingredients.size() < 8)
 			addRandomIngredient();
 		image(assets.get(0), (float)player.getX(), (float)player.getY(), (float)player.width, (float)player.height);
 		
@@ -249,13 +249,13 @@ public class GameArea extends PApplet
 		if (i1 == 3) i2 = (int)(6 * Math.random());
 		else i2 = (int)(5 * Math.random());
 		
-		int x = (int)(600 * Math.random());
+		int x = (int)(580 * Math.random()) + 10;
 		
 		FallingIngredient f;
-		if (i1 == 0) f = new FallingIngredient(base[i2].getIngredientName(), base[i2].getPic(), x, 100);
-		else if (i1 == 1) f = new FallingIngredient(milk[i2].getIngredientName(), milk[i2].getPic(), x, 100);
-		else if (i1 == 2) f = new FallingIngredient(topping[i2].getIngredientName(), topping[i2].getPic(), x, 100);
-		else f = new FallingIngredient("Espresso Shot", espresso.getPic(), x, 100);
+		if (i1 == 0) f = new FallingIngredient(base[i2].getIngredientName(), base[i2].getPic(), x, 0);
+		else if (i1 == 1) f = new FallingIngredient(milk[i2].getIngredientName(), milk[i2].getPic(), x, 0);
+		else if (i1 == 2) f = new FallingIngredient(topping[i2].getIngredientName(), topping[i2].getPic(), x, 0);
+		else f = new FallingIngredient("Espresso Shot", espresso.getPic(), x, 0);
 		f.speed(.75 + .5 * Math.random());
 		addIngredient(f);
 	}

@@ -93,9 +93,9 @@ public class Order {
 		ArrayList<Ingredient> recipe = new ArrayList<Ingredient>();
 		recipe.add(espresso);
 		recipe.add(base[3]);
-		//recipe.add(milk[2]);
-		//recipe.add(topping[1]);
-		length = 2;
+		recipe.add(milk[2]);
+		recipe.add(topping[1]);
+		length = 4;
 		return recipe; 
 	}
 	

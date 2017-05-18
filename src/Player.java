@@ -105,20 +105,16 @@ public class Player extends MovingImage {
 	{
 		Drink drink = drinks.get(currentDrink);
 		Order order = orders.get(currentOrder);
-		if (drink.getLength() == order.getLength())
-		{
-			clearCurrentDrink();
-			return true;
-		}
-		else return false;
-		/**
+		if (drink.getLength() != order.getLength()) return false;
+		
 		for (int i = 0; i < drinks.get(currentDrink).getLength(); i++)
 		{
-			if (!drinks.get(currentDrink).getDrinkComponents().get(i).getIngredientName().equals(orders.get(currentOrder).getRecipe().get(i))) return false;
+			String a = drinks.get(currentDrink).getDrinkComponents().get(i).getIngredientName();
+			String b = orders.get(currentOrder).getRecipe().get(i).getIngredientName();
+			if (!a.equals(b)) return false;
 		}
-		System.out.println("hey");
-
-		return true;**/
+		clearCurrentDrink();
+		return true;
 	}
 
 	/**
