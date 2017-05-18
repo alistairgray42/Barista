@@ -36,7 +36,7 @@ public class Main {
 		cardPanel = new JPanel();
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
-	    
+	    //
 	    window.getContentPane().removeAll();
 	    
 		panel1 = new TitleScreen(this); //(new ImageIcon("/Barista/image/CashRegistar.png")).getImage()   
