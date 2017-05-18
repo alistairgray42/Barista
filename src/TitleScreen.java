@@ -32,7 +32,7 @@ public class TitleScreen extends JPanel implements ActionListener {
 		if(button.isEnabled()){
 			System.out.println("Button is pressed");
 		}
-
+//gg
 		p.add(button);
 		add(p);
 	}
