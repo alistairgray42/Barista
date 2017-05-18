@@ -27,7 +27,7 @@ import jay.jaysound.JayLayerListener;
 import java.awt.geom.AffineTransform;
 import java.awt.Font;
 
-public class GameArea extends PApplet implements JayLayerListener {
+public class GameArea extends PApplet implements JayLayerListener, ActionListener {
 
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 600;
@@ -81,6 +81,12 @@ public class GameArea extends PApplet implements JayLayerListener {
 		player.getOrders().add(Order.randomOrder(1));
 		player.getOrders().add(Order.randomOrder(1));
 		player.getOrders().add(Order.randomOrder(1));
+		
+		player.getOrders().get(0).resetTime();
+		player.getOrders().get(1).resetTime();
+		player.getOrders().get(2).resetTime();
+		player.getOrders().get(3).resetTime();
+
 
 		player.getDrinks().add(new Drink(false));
 		player.getDrinks().add(new Drink(false));
@@ -97,7 +103,6 @@ public class GameArea extends PApplet implements JayLayerListener {
 	// execute once when the program begins
 	public void setup() {
 		// size(0,0,PApplet.P3D);
-		assets.add(loadImage("Barista.png"));
 
 		espresso = new Ingredient("Espresso Shot", loadImage("image/EspressoShot.png"));
 
@@ -125,6 +130,8 @@ public class GameArea extends PApplet implements JayLayerListener {
 		assets.add(loadImage("image/x.png"));
 
 		newPlayer();
+		
+		new Timer(1000, this).start();
 		
 		sound.addPlayList();
 		sound.addSong(0, "JazzMusic.mp3");
@@ -164,7 +171,7 @@ public class GameArea extends PApplet implements JayLayerListener {
 
 		for (int i = 0; i < ingredients.size(); i++) {
 			FallingIngredient f = ingredients.get(i);
-			image(assets.get(i), (float) f.getX(), (float) f.getY(), FallingIngredient.WIDTH, FallingIngredient.HEIGHT);
+			image(f.getPic(), (float) f.getX(), (float) f.getY(), FallingIngredient.WIDTH, FallingIngredient.HEIGHT);
 			f.draw(this);
 			f.act();
 			if (!f.intersects(screenRect))
@@ -210,8 +217,6 @@ public class GameArea extends PApplet implements JayLayerListener {
 		if (!screenRect.intersects(player.bounds()))
 			newPlayer();
 
-		image(assets.get(0), (float) player.getX(), (float) player.getY(), (float) player.width, (float) player.height);
-
 		while (ingredients.size() < 8)
 			addRandomIngredient();
 
@@ -246,8 +251,16 @@ public class GameArea extends PApplet implements JayLayerListener {
 		}
 		text("Score: ", 605, 400);
 		text(score, 680, 400);
+		
+		text("Time: ", 605, 500);
+		text(player.getOrders().get(player.getCurrentOrder()).checkTime(), 680, 500);
 	}
 
+	public void actionPerformed(ActionEvent evt)
+	{
+		//TODO: this you fewl
+	}
+	
 	public void keyPressed() {
 		keys.add(keyCode);
 	}

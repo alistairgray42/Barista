@@ -28,7 +28,8 @@ public class Order {
 
 	private int completion;
 	private int length;
-
+	private int time;
+	
 	public Order(int level) {
 		isCompleted = false;
 
@@ -131,5 +132,16 @@ public class Order {
 		Order o = new Order(level);
 		o.recipe = o.generateOrder(level);
 		return o;
+	}
+	
+	public int checkTime()
+	{
+		time--;
+		return time;
+	}
+	
+	public void resetTime()
+	{
+		time = 120;
 	}
 }
