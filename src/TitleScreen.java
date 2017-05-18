@@ -2,6 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 
 public class TitleScreen extends JPanel implements ActionListener {
@@ -17,10 +19,20 @@ public class TitleScreen extends JPanel implements ActionListener {
 		p.setBackground(new Color(0,0,0,0));  // Panel is transparent
 		
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));	
-		p.add(Box.createVerticalStrut(300));   // Move down by 300 pixels  
+		p.add(Box.createVerticalStrut(250));   // Move down by 300 pixels  
 		
-		JButton button = new JButton("excitement");
+		ImageIcon icon = new ImageIcon("image/Latte.png","Java");
+		JButton button = new JButton("Start", icon);
+		
+	    Font font = new Font("Jokerman", Font.BOLD, 65);
+	   
+		button.setFont(font);
 		button.addActionListener(this);
+		
+		if(button.isEnabled()){
+			System.out.println("Button is pressed");
+		}
+
 		p.add(button);
 		add(p);
 	}
@@ -37,13 +49,14 @@ public class TitleScreen extends JPanel implements ActionListener {
 		
 		g2.scale(ratioX,ratioY);
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
-		g.drawString("a title", 345, 200);
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 75));
+		g.drawString("Brisk Barista", 160, 220);
 		
 		g2.setTransform(af);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		
 		w.changePanel();
 	}
 }
