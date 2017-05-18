@@ -252,7 +252,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		text("Score: ", 605, 400);
 		text(score, 680, 400);
 		
-		text("Time: ", 605, 500);
+		text("Time: ", 605, 500);//
 		text(player.getOrders().get(player.getCurrentOrder()).checkTime(), 680, 500);
 	}
 
