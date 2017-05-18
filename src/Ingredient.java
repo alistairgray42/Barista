@@ -1,25 +1,21 @@
-import processing.core.PImage;
+//changed
 
+import processing.core.PImage;
 public class Ingredient{
 	private String name;
-	private String picName;
-	private PImage pic;
-	
-	public Ingredient(String name)
-	{
-		this.name = name;
-	}
+	private String imgName;
+	private PImage img;
 	
 	public Ingredient(String name, String filename)
 	{
 		this.name = name;
-		picName = filename;
+		imgName = filename;
 	}
 	
 	public Ingredient(String name, PImage pic)
 	{
 		this.name = name;
-		this.pic = pic;
+		this.img = pic;
 	}
 	
 	/**
@@ -34,12 +30,16 @@ public class Ingredient{
 		return name;
 	}
 	
+	public String getFilename() {
+		return imgName;
+	}
+	
 	public String toString() {
 		return name;
 	}
 	
 	public PImage getPic()
 	{
-		return pic;
+		return img;
 	}
 }
