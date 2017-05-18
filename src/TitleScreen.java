@@ -29,10 +29,7 @@ public class TitleScreen extends JPanel implements ActionListener {
 		button.setFont(font);
 		button.addActionListener(this);
 		
-		if(button.isEnabled()){
-			System.out.println("Button is pressed");
-		}
-//gg
+
 		p.add(button);
 		add(p);
 	}
@@ -49,8 +46,8 @@ public class TitleScreen extends JPanel implements ActionListener {
 		
 		g2.scale(ratioX,ratioY);
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 75));
-		g.drawString("Brisk Barista", 160, 220);
+		g.setFont(new Font("Jokerman", Font.BOLD, 85));
+		g.drawString("Brisk Barista", 130, 200);
 		
 		g2.setTransform(af);
 	}
