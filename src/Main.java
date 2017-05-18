@@ -28,7 +28,7 @@ public class Main {
 		processingCanvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		window = (JFrame)processingCanvas.getFrame();
 
-		window.setBounds(0,0,800, 600);
+		window.setBounds(0,0,800,600);
 		window.setMinimumSize(new Dimension(100,100));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
@@ -41,13 +41,13 @@ public class Main {
 	    
 		panel1 = new TitleScreen(this); //(new ImageIcon("/Barista/image/CashRegistar.png")).getImage()   
 	    panel2 = new GameArea();
-	    
+	    	    
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(processingCanvas,"2");
 	    
 	    window.setLayout(new BorderLayout());
 	    
-	    window.add(cardPanel);
+	    window.add(cardPanel, 0);
 	    window.revalidate();
 	}
 	

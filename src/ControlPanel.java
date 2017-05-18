@@ -1,4 +1,8 @@
+import javax.swing.JPanel;
 
-public class ControlPanel {
+import processing.core.PApplet;
+
+public class ControlPanel extends PApplet
+{
 
 }

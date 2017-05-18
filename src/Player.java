@@ -19,16 +19,16 @@ public class Player extends MovingImage {
 	private PImage player;
 	private ArrayList<Order> orders;
 	private ArrayList<Drink> drinks;
-	private Order currentOrder;
-	private Drink currentDrink;
+	private int currentOrder;
+	private int currentDrink;
 	boolean currDrinkCompleted;
 	private Level l;
 	private double xVelocity = 0;
 	private double yVelocity = 0;
 	private double friction = .8;
-	private double gravity = .4;
+	private double gravity = .3;
 	private double jumpStrength = .6;
-	
+
 	public Player(PImage image, double x, double y, double w, double h) {
 		super(image, x, y, w, h);
 		l = new Level(1);
@@ -51,10 +51,10 @@ public class Player extends MovingImage {
 		if (xVelocity <= 10 && xVelocity >= -10)
 			xVelocity += 2*dir;
 	}
-	
+
 	public void jump()
 	{
-		yVelocity -= 2 * jumpStrength;
+		if (yVelocity > -10 * gravity) yVelocity -= 2 * jumpStrength;
 	}
 	
 	/**
@@ -79,53 +79,86 @@ public class Player extends MovingImage {
 
 	/**
 	 * Check to see whether the barista completed the current order
-	 */
+	 *
 	public boolean checkCompletion() {
-		if (currentDrink.equals(currentOrder)
-				&& currentDrink.getDrinkComponents().size() == currentOrder.getRecipe().size()) {
-			currentOrder.setIsCompleted(true);
+		if (drinks.get(currentDrink).getDrinkComponents().size() == orders.get(currentOrder).getRecipe().size()) 
+		{
+			orders.get(currentOrder).setIsCompleted(true);
 			return true;
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	/**
 	 * Add ingredient to the drink the barista is currently making
 	 * @param i Ingredient that the player touches and wants to add to the drink
 	 */
+
+
 	public void addIngredient(Ingredient i) {
-		currentDrink.add(i);
+		drinks.get(currentDrink).add(i);
+	}
+
+	public boolean checkCompletion()
+	{
+		Drink drink = drinks.get(currentDrink);
+		Order order = orders.get(currentOrder);
+		if (drink.getLength() != order.getLength()) return false;
+		
+		for (int i = 0; i < drinks.get(currentDrink).getLength(); i++)
+		{
+			String a = drinks.get(currentDrink).getDrinkComponents().get(i).getIngredientName();
+			String b = orders.get(currentOrder).getRecipe().get(i).getIngredientName();
+			if (!a.equals(b)) return false;
+		}
+		clearCurrentDrink();
+		return true;
 	}
 
 	/**
 	 * Add more ingredients to the current drink
 	 * @param current the current drink that the player is currently making in the list of orders
 	 */
-	public void updateCurrentOrder(int current){
-		currentOrder = orders.get(current);
-		currentDrink = drinks.get(current);
+	public void updateCurrentOrder(int current)
+	{
+		currentOrder = current;
 	}
-	
+
+	public void updateCurrentDrink(int current)
+	{
+		currentDrink = current;
+	}
+
 	/**	
 	 * Gives the ArrayList of orders
 	 */
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
-	
+
 	/**
 	 * Gives the ArrayList of the drinks the barista has completed or is still making
 	 */
 	public ArrayList<Drink> getDrinks() {
 		return drinks;
 	}
-	
+
 	/**
 	 * Gives the current drink that the barista is making
 	 */
-	public Drink getCurrentDrink() {
+	public int getCurrentDrink() {
 		return currentDrink;
+	}
+
+	public int getCurrentOrder()
+	{
+		return currentOrder;
+	}
+
+	public void clearCurrentDrink()
+	{
+		drinks.set(currentDrink, new Drink(false));
 	}
 
 	public void act()
@@ -134,7 +167,7 @@ public class Player extends MovingImage {
 		// ***********Y AXIS***********
 
 		yVelocity += gravity; // GRAVITY
-		if (y >= 465 && yVelocity >= 0) yVelocity = -20 * gravity;
+		if (y >= 450 && yVelocity >= 0) yVelocity = 0;
 		if (y <= 1) yVelocity = 20 * gravity;
 		y += yVelocity;
 
@@ -142,11 +175,11 @@ public class Player extends MovingImage {
 
 		xVelocity *= friction;
 		if (x <= 1) xVelocity = 20 * gravity;
-		if (x >= 749) xVelocity = -20 * gravity;
+		if (x >= 549) xVelocity = -20 * gravity;
 		x += xVelocity;
 
 	}
-	
+
 	public Rectangle2D.Double bounds()
 	{
 		return new Rectangle2D.Double(x, y, width, height);

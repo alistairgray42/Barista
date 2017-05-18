@@ -1,14 +1,21 @@
 import processing.core.PImage;
-
-public class Ingredient{//fff
-	private final String name;
-	private final String filename;
+public class Ingredient{
+	private String name;
+	private String imgName;
+	private PImage img;
 	
 	public Ingredient(String name, String filename)
 	{
 		this.name = name;
-		this.filename = filename;
+		imgName = filename;
 	}
+	
+	public Ingredient(String name, PImage pic)
+	{
+		this.name = name;
+		this.img = pic;
+	}
+	
 	/**
 	 * @param other Ingredient object to be compared to this Ingredient object
 	 * @return true if other Ingredient object equals this Ingredient object
@@ -22,10 +29,15 @@ public class Ingredient{//fff
 	}
 	
 	public String getFilename() {
-		return filename;
+		return imgName;
 	}
 	
 	public String toString() {
 		return name;
+	}
+	
+	public PImage getPic()
+	{
+		return img;
 	}
 }
