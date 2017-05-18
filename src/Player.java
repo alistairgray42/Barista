@@ -28,7 +28,7 @@ public class Player extends MovingImage {
 	private double friction = .8;
 	private double gravity = .4;
 	private double jumpStrength = .6;
-	
+
 	public Player(PImage image, double x, double y, double w, double h) {
 		super(image, x, y, w, h);
 		l = new Level(1);
@@ -51,7 +51,7 @@ public class Player extends MovingImage {
 		if (xVelocity <= 10 && xVelocity >= -10)
 			xVelocity += 2*dir;
 	}
-	
+
 	public void jump()
 	{
 		yVelocity -= 2 * jumpStrength;
@@ -78,25 +78,47 @@ public class Player extends MovingImage {
 
 	/**
 	 * Check to see whether the barista completed the current order
-	 */
+	 *
 	public boolean checkCompletion() {
-		if (currentDrink == currentOrder
-				&& drinks.get(currentDrink).getDrinkComponents().size() == orders.get(currentOrder).getRecipe().size()) 
+		if (drinks.get(currentDrink).getDrinkComponents().size() == orders.get(currentOrder).getRecipe().size()) 
 		{
 			orders.get(currentOrder).setIsCompleted(true);
 			return true;
 		} else {
 			return false;
 		}
-	}
+	}*/
 
 	/**
 	 * Add ingredient to the drink the barista is currently making
 	 * @param i Ingredient that the player touches and wants to add to the drink
 	 */
-	
+
 	public void addIngredient(Ingredient i) {
 		drinks.get(currentDrink).add(i);
+	}
+
+	/*TODO: do this better
+	 * 
+	 */
+	public boolean checkCompletion()
+	{
+		Drink drink = drinks.get(currentDrink);
+		Order order = orders.get(currentOrder);
+		if (drink.getLength() == order.getLength())
+		{
+			clearCurrentDrink();
+			return true;
+		}
+		else return false;
+		/**
+		for (int i = 0; i < drinks.get(currentDrink).getLength(); i++)
+		{
+			if (!drinks.get(currentDrink).getDrinkComponents().get(i).getIngredientName().equals(orders.get(currentOrder).getRecipe().get(i))) return false;
+		}
+		System.out.println("hey");
+
+		return true;**/
 	}
 
 	/**
@@ -107,31 +129,41 @@ public class Player extends MovingImage {
 	{
 		currentOrder = current;
 	}
-	
+
+	public void updateCurrentDrink(int current)
+	{
+		currentDrink = current;
+	}
+
 	/**	
 	 * Gives the ArrayList of orders
 	 */
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}
-	
+
 	/**
 	 * Gives the ArrayList of the drinks the barista has completed or is still making
 	 */
 	public ArrayList<Drink> getDrinks() {
 		return drinks;
 	}
-	
+
 	/**
 	 * Gives the current drink that the barista is making
 	 */
 	public int getCurrentDrink() {
 		return currentDrink;
 	}
-	
+
 	public int getCurrentOrder()
 	{
 		return currentOrder;
+	}
+
+	public void clearCurrentDrink()
+	{
+		drinks.set(currentDrink, new Drink(false));
 	}
 
 	public void act()
@@ -152,7 +184,7 @@ public class Player extends MovingImage {
 		x += xVelocity;
 
 	}
-	
+
 	public Rectangle2D.Double bounds()
 	{
 		return new Rectangle2D.Double(x, y, width, height);

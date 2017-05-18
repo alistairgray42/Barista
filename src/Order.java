@@ -31,10 +31,13 @@ public class Order {
 	private boolean isCompleted;
 
 	private ArrayList<Ingredient> recipe;
+	
+	private int completion;
+	private int length;
 
 	public Order(int level) {
 		isCompleted = false;
-		
+		completion = 0;
 		//recipe = generateOrder1(level);
 		recipe = generateOrder2();
 		
@@ -90,8 +93,9 @@ public class Order {
 		ArrayList<Ingredient> recipe = new ArrayList<Ingredient>();
 		recipe.add(espresso);
 		recipe.add(base[3]);
-		recipe.add(milk[2]);
-		recipe.add(topping[1]);
+		//recipe.add(milk[2]);
+		//recipe.add(topping[1]);
+		length = 2;
 		return recipe; 
 	}
 	
@@ -106,12 +110,9 @@ public class Order {
 		return a;
 	}
 	
-	public boolean getIsCompleted() {
-		return isCompleted;
-	}
-	
-	public void setIsCompleted(boolean c) {
-		isCompleted = c;
+	public boolean isCompleted() 
+	{
+		return (completion >= length);
 	}
 	
 	public boolean getHasIce() {
@@ -120,5 +121,14 @@ public class Order {
 	public ArrayList<Ingredient> getRecipe() {
 		return recipe;
 	}
-
+	
+	public Ingredient getNextIngredient()
+	{
+		if (isCompleted()) return null;
+		return recipe.get(completion);
+	}
+	public int getLength()
+	{
+		return length;
+	}
 }

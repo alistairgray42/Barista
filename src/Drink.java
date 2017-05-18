@@ -40,4 +40,9 @@ public class Drink {
 		return a;
 	}
 	
+	public int getLength()
+	{
+		return drinkComponents.size();
+	}
+	
 }

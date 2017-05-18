@@ -34,6 +34,8 @@ public class GameArea extends PApplet
 	private Ingredient[] milk;
 	private Ingredient[] topping;
 	private Ingredient espresso;
+	
+	private int score;
 
 
 	public GameArea() 
@@ -42,6 +44,9 @@ public class GameArea extends PApplet
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
 		ingredients = new ArrayList<FallingIngredient>();
+		
+		score = 0;
+
 	}
 	
 	/*public void setup(){
@@ -60,8 +65,19 @@ public class GameArea extends PApplet
 
 	}*/
 
-	public void newPlayer() {
+	public void newPlayer() 
+	{
 		player = new Player(assets.get(0), 100, 100, 50, 50);
+		player.getOrders().add(new Order(1));
+		player.getOrders().add(new Order(1));
+		//player.getOrders().add(new Order(1));
+		//player.getOrders().add(new Order(1));
+		
+		player.getDrinks().add(new Drink(false));
+		player.getDrinks().add(new Drink(false));
+		//player.getDrinks().add(new Drink(false));
+		//player.getDrinks().add(new Drink(false));
+
 	}
 	
 	public void runMe() {
@@ -138,6 +154,12 @@ public class GameArea extends PApplet
 			f.draw(this);
 			f.act();
 			if (!f.intersects(screenRect)) ingredients.remove(i);
+			else if (f.intersects(player.getBounds())) 
+			{
+				player.addIngredient(f.getIngredient());
+				ingredients.remove(i);
+				if(player.checkCompletion()) score += 100;
+			}
 		}
 
 		popMatrix();
@@ -151,7 +173,27 @@ public class GameArea extends PApplet
 		if (isPressed(KeyEvent.VK_UP))
 			player.jump();
 		if (isPressed(49))
+		{
+			player.updateCurrentOrder(0);
+			player.updateCurrentDrink(0);
+		}
+		if (isPressed(50))
+		{
 			player.updateCurrentOrder(1);
+			player.updateCurrentDrink(1);
+		}
+		if (isPressed(51))
+		{
+			player.updateCurrentOrder(2);
+			player.updateCurrentDrink(2);
+		}
+		if (isPressed(52))
+		{
+			player.updateCurrentOrder(3);
+			player.updateCurrentDrink(3);
+		}
+		if (isPressed(81))
+			player.clearCurrentDrink();
 		player.act();
 
 		if (!screenRect.intersects(player.bounds()))
@@ -161,8 +203,24 @@ public class GameArea extends PApplet
 		image(assets.get(0), (float)player.getX(), (float)player.getY(), (float)player.width, (float)player.height);
 		
 		fill (100);
-		text("Order #:", 610, 20);
-		text(player.getCurrentOrder(), 680, 20);
+		text("Order #:", 605, 20);
+		text(player.getCurrentOrder() + 1, 680, 20);
+		/*
+		text("Next Ingredient: ", 605, 40);
+		text(player.getOrders().get(player.getCurrentOrder()).getNextIngredient().getIngredientName(), 705, 40);
+		*/
+		Order currentOrder = player.getOrders().get(player.getCurrentOrder());
+		for (int i = 0; i < currentOrder.getLength(); i++)
+		{
+			text(currentOrder.getRecipe().get(i).getIngredientName(), 605, 40 + 20 * i);
+		}
+		Drink currentDrink = player.getDrinks().get(player.getCurrentDrink());
+		for (int i = 0; i < currentDrink.getLength(); i++)
+		{
+			text(currentDrink.getDrinkComponents().get(i).getIngredientName(), 605, 160 + 20 * i);
+		}
+		text("Score: ", 605, 400);
+		text(score, 680, 400);
 	}
 
 	public void keyPressed() {
@@ -197,7 +255,7 @@ public class GameArea extends PApplet
 		if (i1 == 0) f = new FallingIngredient(base[i2].getIngredientName(), base[i2].getPic(), x, 100);
 		else if (i1 == 1) f = new FallingIngredient(milk[i2].getIngredientName(), milk[i2].getPic(), x, 100);
 		else if (i1 == 2) f = new FallingIngredient(topping[i2].getIngredientName(), topping[i2].getPic(), x, 100);
-		else f = new FallingIngredient("espresso", espresso.getPic(), x, 100);
+		else f = new FallingIngredient("Espresso Shot", espresso.getPic(), x, 100);
 		f.speed(.75 + .5 * Math.random());
 		addIngredient(f);
 	}

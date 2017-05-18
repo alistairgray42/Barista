@@ -32,4 +32,9 @@ public class FallingIngredient extends MovingImage
 	{
 		yVelocity *= multiplier;
 	}
+	
+	public Ingredient getIngredient()
+	{
+		return ingredient;
+	}
 }
