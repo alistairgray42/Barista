@@ -14,6 +14,8 @@ public class Leaderboard extends JPanel implements ActionListener
 {
 
 	private Main w;
+	private String[] highscores = new String[5];
+	private final String filename = "leaderboard.txt";
 	
 	public Leaderboard (Main w)
 	{
@@ -29,6 +31,8 @@ public class Leaderboard extends JPanel implements ActionListener
 		panel.add(button);
 		
 		add(panel);
+		
+		
 	}
 	
 	protected void paintComponent(Graphics g)
