@@ -16,27 +16,30 @@ import java.awt.Font;
 public class TitleScreen extends JPanel implements ActionListener, JayLayerListener {
 	
 	private Main w;
+	
+	private ImageIcon background;
 	//private JayLayer sound;
 	
-//	private Image background;
+	
 	/**
 	 * Only minorly changed stolen code
 	 * @param w
 	 */
 	public TitleScreen(Main w) { //, Image bgImg
 		this.w = w;
-	//	background = bgImg;
 		JPanel p = new JPanel();
 		p.setBackground(new Color(0,0,0,0));  // Panel is transparent
 		
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));	
 		p.add(Box.createVerticalStrut(250));   // Move down by 300 pixels  
 		
-		ImageIcon icon = new ImageIcon("image/Latte.png","Java");
-		JButton button = new JButton("Start", icon);
-		
-	    Font font = new Font("Jokerman", Font.BOLD, 65);
-	   
+	//	ImageIcon icon = new ImageIcon("image/Latte.png","Java");
+		background = new ImageIcon("image/Title Screen.png");
+		JButton button = new JButton("Start");
+		button.setBackground(new Color(225, 127, 80));
+		button.setOpaque(true);
+		button.setBorderPainted(false);
+	    Font font = new Font("Jokerman", Font.BOLD, 25);
 		button.setFont(font);
 		button.addActionListener(this);
 		
@@ -54,7 +57,10 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	//	g.drawImage(background, 0, 0, this);
+		if (background == null) {
+			System.out.println("test");
+		}
+		g.drawImage(background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 		//JLabel contentPane = new JLabel();
 		//contentPane.setIcon(new ImageIcon("/Barista/image/CashRegistar.png"));
 		//contentPane.setLayout(new BorderLayout());
@@ -71,8 +77,8 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		
 		//g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
 		//g.drawString("Brisk Barista", 260, 200);
-		g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		g.drawString("Brisk Barista", 130, 200);
+	//	g.setFont(new Font("Jokerman", Font.BOLD, 85));
+	//	g.drawString("Brisk Barista", 130, 200);
 		
 		g2.setTransform(af);
 		
