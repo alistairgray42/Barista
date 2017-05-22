@@ -39,28 +39,28 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		
 		background = new ImageIcon("image/Title Screen.png");
 
-		JButton button = new JButton("", new ImageIcon("image/StartButton.png","Java"));
+		JButton button = new JButton("Start", new ImageIcon("image/StartButton.png","Java"));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.setBackground(new Color(225, 127, 80));
 		button.setOpaque(false);
 		button.setBorderPainted(false);
 		
-		JButton endless = new JButton("", new ImageIcon("image/EndlessButton.png","Java"));
+		JButton endless = new JButton("Endless", new ImageIcon("image/EndlessButton.png","Java"));
 		endless.setOpaque(false);
 		endless.setBorderPainted(false);
-		JButton instructions = new JButton("", new ImageIcon("image/InstructionsButton.png","Java"));
+		JButton instructions = new JButton("Instructions", new ImageIcon("image/InstructionsButton.png","Java"));
 		instructions.setOpaque(false);
 		instructions.setBorderPainted(false);
-		JButton quit = new JButton("", new ImageIcon("image/QuitButton.png","Java"));
+		JButton quit = new JButton("Quit", new ImageIcon("image/QuitButton.png","Java"));
 		quit.setOpaque(false);
 		quit.setBorderPainted(false);
-		JButton leaderboard = new JButton("", new ImageIcon("image/LeaderboardButton.png","Java"));
+		JButton leaderboard = new JButton("Leaderboard", new ImageIcon("image/LeaderboardButton.png","Java"));
 		leaderboard.setOpaque(false);
 		leaderboard.setBorderPainted(false);
 
 	    Font font = new Font("Jokerman", Font.BOLD, 65);
-	    Font littleFont = new Font("Jokerman", Font.BOLD, 20);
-		button.setFont(font);
+	    Font littleFont = new Font("Jokerman", Font.BOLD, 0);
+		button.setFont(littleFont);
 		button.addActionListener(this);
 		
 		endless.setFont(littleFont);
@@ -96,9 +96,6 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (background == null) {
-			System.out.println("test");
-		}
 		g.drawImage(background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 		//JLabel contentPane = new JLabel();
 		//contentPane.setIcon(new ImageIcon("/Barista/image/CashRegistar.png"));
@@ -127,6 +124,7 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 
 	public void actionPerformed(ActionEvent e) {
 		
+		Object o = e.getSource();
 		String str = e.getActionCommand();
 		
 		if (str.equals("Start")) w.changePanel(1);
