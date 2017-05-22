@@ -88,14 +88,6 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		p2.add(quit);
 
 		add(p);
-
-		
-		/*
-		sound = new JayLayer("audio/","audio/",false);
-		sound.addPlayList();
-		sound.addSong(0, "JazzMusic.mp3");
-		sound.addJayLayerListener(this);
-		*/
 	}
 	
 	protected void paintComponent(Graphics g) {

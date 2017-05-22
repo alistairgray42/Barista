@@ -16,7 +16,8 @@ public class Main {
 	
 	private TitleScreen panel1;    
 	private GameArea panel2;
-	private InstructionScreen panel4;
+	private InstructionScreen panel3;
+	private Leaderboard panel4;
 	
 	private PSurfaceAWT.SmoothCanvas processingCanvas;
 	
@@ -39,7 +40,7 @@ public class Main {
 		PSurfaceAWT surf = (PSurfaceAWT) panel2.getSurface();
 		processingCanvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		window = (JFrame)processingCanvas.getFrame();
-		window.setTitle("1337 Baristing");
+		window.setTitle("Brisk Barista");
 
 		window.setBounds(0,0,800,600);
 		window.setMinimumSize(new Dimension(800,600));//
@@ -55,16 +56,20 @@ public class Main {
 	    
 		panel1 = new TitleScreen(this); 
 	    	    
-	    cardPanel.add(panel1,"1");
-	    cardPanel.add(processingCanvas,"2");
+	    cardPanel.add(panel1,"1"); 
+	    cardPanel.add(processingCanvas,"2"); 
 	    
-	    panel4 = new InstructionScreen(this);
-	    cardPanel.add(panel4,"4");
+	    panel3 = new InstructionScreen(this);
+	    cardPanel.add(panel3, "3"); 
+	    
+	    panel4 = new Leaderboard(this);
+	    cardPanel.add(panel4, "4");
 	    
 	    window.setLayout(new BorderLayout());
 	    
 	    window.add(cardPanel, 0);
 	    window.revalidate();
+	    
 	}
 	
 
