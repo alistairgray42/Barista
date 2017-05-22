@@ -16,6 +16,7 @@ public class Main {
 	
 	private TitleScreen panel1;    
 	private GameArea panel2;
+	private InstructionScreen panel4;
 	
 	private PSurfaceAWT.SmoothCanvas processingCanvas;
 	
@@ -49,13 +50,16 @@ public class Main {
 		cardPanel = new JPanel();
 	    CardLayout cl = new CardLayout();
 	    cardPanel.setLayout(cl);
-	    //
+	    
 	    window.getContentPane().removeAll();
 	    
-		panel1 = new TitleScreen(this); //(new ImageIcon("/Barista/image/CashRegistar.png")).getImage()   
+		panel1 = new TitleScreen(this); 
 	    	    
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(processingCanvas,"2");
+	    
+	    panel4 = new InstructionScreen(this);
+	    cardPanel.add(panel4,"4");
 	    
 	    window.setLayout(new BorderLayout());
 	    

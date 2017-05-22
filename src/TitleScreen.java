@@ -46,15 +46,19 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		button.setBorderPainted(false);
 		
 		JButton endless = new JButton("Endless", new ImageIcon("image/EndlessButton.png","Java"));
+		endless.setBackground(new Color(225, 127, 80));
 		endless.setOpaque(false);
 		endless.setBorderPainted(false);
 		JButton instructions = new JButton("Instructions", new ImageIcon("image/InstructionsButton.png","Java"));
+		instructions.setBackground(new Color(225, 127, 80));
 		instructions.setOpaque(false);
 		instructions.setBorderPainted(false);
 		JButton quit = new JButton("Quit", new ImageIcon("image/QuitButton.png","Java"));
+		quit.setBackground(new Color(225, 127, 80));
 		quit.setOpaque(false);
 		quit.setBorderPainted(false);
 		JButton leaderboard = new JButton("Leaderboard", new ImageIcon("image/LeaderboardButton.png","Java"));
+		leaderboard.setBackground(new Color(225, 127, 80));
 		leaderboard.setOpaque(false);
 		leaderboard.setBorderPainted(false);
 

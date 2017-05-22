@@ -49,6 +49,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private Main main;
 	
 	private JayLayer sound;
+	String[] soundEffects;
 //	private JayLayer soundEffects;
 	private boolean[] completed = {false, false, false, false};
 	
@@ -66,6 +67,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		level = 1;
 		
 		sound = new JayLayer("audio/","audio/",false);
+		soundEffects = new String[]{"CollectingIngredients.wav","Jumping.wav","Fail.mp3"};
 		
 		this.endless = endless;
 		this.main = main;
