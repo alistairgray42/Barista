@@ -45,8 +45,11 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private Ingredient espresso;
 
 	private int score;
+	private int level;
 	
 	private JayLayer sound;
+	private boolean[] completed = {false, false, false, false};
+
 
 	public GameArea() {
 		super();
@@ -55,6 +58,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		ingredients = new ArrayList<FallingIngredient>();
 
 		score = 0;
+		level = 1;
 		
 		sound = new JayLayer("audio/","audio/",false);
 	}
@@ -87,7 +91,6 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		player.getOrders().get(2).resetTime();
 		player.getOrders().get(3).resetTime();
 
-
 		player.getDrinks().add(new Drink(false));
 		player.getDrinks().add(new Drink(false));
 		player.getDrinks().add(new Drink(false));
@@ -106,24 +109,30 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 
 		espresso = new Ingredient("Espresso Shot", loadImage("image/EspressoShot.png"));
 
-		base = new Ingredient[] { new Ingredient("Chocolate Syrup", loadImage("image/Mocha.png")),
-				new Ingredient("Matcha", loadImage("image/Matcha.png")),
+		base = new Ingredient[] { 
+				new Ingredient("Chocolate Syrup", loadImage("image/Mocha.png")),
+				//new Ingredient("Matcha", loadImage("image/Matcha.png")),
 				new Ingredient("Honey", loadImage("image/Honey.png")),
 				new Ingredient("Caramel Syrup", loadImage("image/Caramel.png")),
-				new Ingredient("Vanilla Syrup", loadImage("image/Vanilla.png")) };
+				new Ingredient("Vanilla Syrup", loadImage("image/Vanilla.png")) 
+				};
 
-		milk = new Ingredient[] { new Ingredient("Half-and-Half", loadImage("image/HalfNHalf.png")),
-				new Ingredient("Steamed Milk", loadImage("image/SteamedMilk.png")),
+		milk = new Ingredient[] {
+				//new Ingredient("Half-and-Half", loadImage("image/HalfNHalf.png")),
+				//new Ingredient("Steamed Milk", loadImage("image/SteamedMilk.png")),
 				new Ingredient("Almond Milk", loadImage("image/AlmondMilk.png")),
 				new Ingredient("Soymilk", loadImage("image/SoyMilk.png")),
-				new Ingredient("Coconut Milk", loadImage("image/CoconutMilk.png")) };
+				new Ingredient("Coconut Milk", loadImage("image/CoconutMilk.png")) 
+				};
 
-		topping = new Ingredient[] { new Ingredient("Whipping Cream", loadImage("image/WhippedCream.png")),
+		topping = new Ingredient[] { 
+				new Ingredient("Whipping Cream", loadImage("image/WhippedCream.png")),
 				new Ingredient("Cinnamon", loadImage("image/Cinnamon.png")),
 				new Ingredient("Chocolate Syrup", loadImage("image/Mocha.png")),
-				new Ingredient("Matcha", loadImage("image/Matcha.png")),
+				//new Ingredient("Matcha", loadImage("image/Matcha.png")),
 				new Ingredient("Caramel Syrup", loadImage("image/Caramel.png")),
-				new Ingredient("Vanilla Syrup", loadImage("image/Vanilla.png")) };
+				new Ingredient("Vanilla Syrup", loadImage("image/Vanilla.png")) 
+				};
 
 		assets.add(loadImage("image/Barista.png"));
 		assets.add(loadImage("image/check.png"));
@@ -180,7 +189,20 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 				player.addIngredient(f.getIngredient());
 				ingredients.remove(i);
 				if (player.checkCompletion())
-					score += 100;
+				{
+					score += level * 100;
+					level++;
+					player.getOrders().add(Order.randomOrder(level));
+					player.getOrders().add(Order.randomOrder(level));
+					player.getOrders().add(Order.randomOrder(level));
+					player.getOrders().add(Order.randomOrder(level));
+					
+					player.getOrders().get(0).resetTime();
+					player.getOrders().get(1).resetTime();
+					player.getOrders().get(2).resetTime();
+					player.getOrders().get(3).resetTime();
+					completed[player.getCurrentOrder()] = true;
+				}
 			}
 		}
 
@@ -225,6 +247,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		fill(100);
 		text("Order #:", 605, 20);
 		text(player.getCurrentOrder() + 1, 680, 20);
+		if (completed[player.getCurrentOrder()]) image(assets.get(1), 690f, 20f);
 		
 		/*
 		 * text("Next Ingredient: ", 605, 40);
@@ -235,7 +258,9 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		Drink currentDrink = player.getDrinks().get(player.getCurrentDrink());
 
 		for (int i = 0; i < currentOrder.getLength(); i++)
+		{
 			text(currentOrder.getRecipe().get(i).getIngredientName(), 615, 40 + 20 * i);
+		}
 
 		if (currentOrder.getLength() >= currentDrink.getLength())
 			for (int i = 0; i < currentDrink.getLength(); i++) {
@@ -246,7 +271,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 					image(assets.get(2), 605f, 30f + 20 * i, 10f, 10f);
 			}
 
-		for (int i = 0; i < currentDrink.getLength(); i++) {
+		for (int i = 0; i < currentDrink.getLength() && i < 8; i++) {
 			text(currentDrink.getDrinkComponents().get(i).getIngredientName(), 605, 160 + 20 * i);
 		}
 		text("Score: ", 605, 400);
@@ -254,6 +279,9 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		
 		text("Time: ", 605, 500);//
 		text(player.getOrders().get(player.getCurrentOrder()).checkTime(), 680, 500);
+		
+		text("Level: ", 605, 450);
+		text(level, 680, 450);
 	}
 
 	public void actionPerformed(ActionEvent evt)
@@ -282,13 +310,13 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private void addRandomIngredient() {
 		int i1 = (int) (4 * Math.random());
 		int i2;
-		if (i1 == 3)
-			i2 = (int) (6 * Math.random());
-		else
-			i2 = (int) (5 * Math.random());
+		if (i1 == 0) i2 = (int) (4 * Math.random());
+		else if (i1 == 1) i2 = (int) (3 * Math.random());
+		else if (i1 == 2) i2 = (int) (5 * Math.random());
+		else i2 = 0;
 
 		int x = (int) (580 * Math.random()) + 10;
-
+		//4,3,5
 		FallingIngredient f;
 		if (i1 == 0)
 			f = new FallingIngredient(base[i2].getIngredientName(), base[i2].getPic(), x, 0);

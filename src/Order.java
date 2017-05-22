@@ -7,17 +7,26 @@ public class Order {
 
 	public static final Ingredient espresso = new Ingredient("Espresso Shot", "EspressoShot.png");
 
-	public static final Ingredient[] base = new Ingredient[] { new Ingredient("Chocolate Syrup", "Mocha.png"),
-			new Ingredient("Matcha", "Matcha.png"), new Ingredient("Honey", "Honey.png"),
-			new Ingredient("Caramel Syrup", "Caramel.png"), new Ingredient("Vanilla Syrup", "Vanilla.png") };
+	public static final Ingredient[] base = new Ingredient[] { 
+			new Ingredient("Chocolate Syrup", "Mocha.png"),
+			//new Ingredient("Matcha", "Matcha.png"), 
+			new Ingredient("Honey", "Honey.png"),
+			new Ingredient("Caramel Syrup", "Caramel.png"), 
+			new Ingredient("Vanilla Syrup", "Vanilla.png") };
 
-	public static final Ingredient[] milk = new Ingredient[] { new Ingredient("Half-and-Half", "HalfNHalf.png"),
-			new Ingredient("Steamed Milk", "SteamedMilk.png"), new Ingredient("Almond Milk", "AlmondMilk.png"),
-			new Ingredient("Soymilk", "SoyMilk.png"), new Ingredient("Coconut Milk", "CoconutMilk.png") };
+	public static final Ingredient[] milk = new Ingredient[] { 
+			//new Ingredient("Half-and-Half", "HalfNHalf.png"),
+			//new Ingredient("Steamed Milk", "SteamedMilk.png"), 
+			new Ingredient("Almond Milk", "AlmondMilk.png"),
+			new Ingredient("Soymilk", "SoyMilk.png"), 
+			new Ingredient("Coconut Milk", "CoconutMilk.png") };
 
-	public static final Ingredient[] topping = new Ingredient[] { new Ingredient("Whipping Cream", "WhippedCream.png"),
-			new Ingredient("Cinnamon", "Cinnamon.png"), new Ingredient("Chocolate Syrup", "Mocha.png"),
-			new Ingredient("Matcha", "Matcha.png"), new Ingredient("Caramel Syrup", "Caramel.png"),
+	public static final Ingredient[] topping = new Ingredient[] { 
+			new Ingredient("Whipping Cream", "WhippedCream.png"),
+			new Ingredient("Cinnamon", "Cinnamon.png"), 
+			new Ingredient("Chocolate Syrup", "Mocha.png"),
+			//new Ingredient("Matcha", "Matcha.png"), 
+			new Ingredient("Caramel Syrup", "Caramel.png"),
 			new Ingredient("Vanilla Syrup", "Vanilla.png") };
 
 	private boolean hasIce;
@@ -27,7 +36,6 @@ public class Order {
 	private ArrayList<Ingredient> recipe;
 
 	private int completion;
-	private int length;
 	private int time;
 	
 	public Order(int level) {
@@ -107,7 +115,7 @@ public class Order {
 
 	public boolean isCompleted() 
 	{
-		return (completion >= length);
+		return (completion >= recipe.size());
 	}
 
 	public boolean getHasIce() {
@@ -125,7 +133,7 @@ public class Order {
 	}
 
 	public int getLength() {
-		return length;
+		return recipe.size();
 	}
 
 	public static Order randomOrder(int level) {
@@ -142,6 +150,6 @@ public class Order {
 	
 	public void resetTime()
 	{
-		time = 120;
+		time = 12000;
 	}
 }

@@ -33,6 +33,9 @@ public class Player extends MovingImage {
 	private double friction = .8;
 	private double gravity = .4;
 	private double jumpStrength = .6;
+	
+	
+	private boolean isJumping = false;
 
 	public Player(PImage image, double x, double y, double w, double h) {
 		super(image, x, y, w, h);
@@ -59,7 +62,7 @@ public class Player extends MovingImage {
 
 	public void jump()
 	{
-		yVelocity -= 2 * jumpStrength;
+		isJumping = true;
 	}
 	
 	/**
@@ -175,7 +178,12 @@ public class Player extends MovingImage {
 		// ***********Y AXIS***********
 
 		yVelocity += gravity; // GRAVITY
-		if (y >= 450 && yVelocity >= 0) yVelocity = -20 * gravity;
+		if (y >= 450) yVelocity = 0;
+		if (isJumping) 
+		{
+			yVelocity = - 10 * jumpStrength;
+			isJumping = false;
+		}
 		if (y <= 1) yVelocity = 20 * gravity;
 		y += yVelocity;
 

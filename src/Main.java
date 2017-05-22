@@ -27,6 +27,7 @@ public class Main {
 		PSurfaceAWT surf = (PSurfaceAWT) panel2.getSurface();
 		processingCanvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		window = (JFrame)processingCanvas.getFrame();
+		window.setTitle("1337 Baristing");
 
 		window.setBounds(0,0,800,600);
 		window.setMinimumSize(new Dimension(100,100));
