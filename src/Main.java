@@ -41,7 +41,7 @@ public class Main {
 		window.setTitle("1337 Baristing");
 
 		window.setBounds(0,0,800,600);
-		window.setMinimumSize(new Dimension(800,600));
+		window.setMinimumSize(new Dimension(800,600));//
 		window.setMaximumSize(new Dimension(800, 600));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
