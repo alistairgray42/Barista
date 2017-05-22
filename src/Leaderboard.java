@@ -19,7 +19,7 @@ public class Leaderboard extends JPanel implements ActionListener
 	
 	public Leaderboard (Main w)
 	{
-		this.w = w;
+		this.w = w;//
 		
 		JPanel panel = new JPanel();
 		
