@@ -249,7 +249,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		text(player.getCurrentOrder() + 1, 680, 20);
 		if (completed[player.getCurrentOrder()]) image(assets.get(1), 690f, 20f);
 		
-		/*
+		/* 
 		 * text("Next Ingredient: ", 605, 40);
 		 * text(player.getOrders().get(player.getCurrentOrder()).
 		 * getNextIngredient().getIngredientName(), 705, 40);
