@@ -1,4 +1,3 @@
-//changed
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
@@ -50,9 +49,11 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private Main main;
 	
 	private JayLayer sound;
+//	private JayLayer soundEffects;
 	private boolean[] completed = {false, false, false, false};
 	
 	private boolean endless;
+	private PImage background;
 
 
 	public GameArea(Main main, boolean endless) {
@@ -68,6 +69,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		
 		this.endless = endless;
 		this.main = main;
+//		soundEffects = new JayLayer("audio/","audio/",false);
 	}
 
 	/*
@@ -87,7 +89,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	 */
 
 	public void newPlayer() {
-		player = new Player(assets.get(0), 100, 100, 50, 50);
+		player = new Player(assets.get(0), 100, 100, 70, 70);
 		player.getOrders().add(Order.randomOrder(1));
 		player.getOrders().add(Order.randomOrder(1));
 		player.getOrders().add(Order.randomOrder(1));
@@ -155,6 +157,11 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		sound.addJayLayerListener(this);
 		sound.nextSong();
 		
+//		soundEffects.addSoundEffect("CollectingCoins.wav");
+//		soundEffects.addSoundEffect("Jumping.wav");
+//		soundEffects.addJayLayerListener(this);
+		
+		background = loadImage("image/Background.png");
 	}
 
 	// The statements in draw() are executed until the
@@ -165,7 +172,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 
 		// drawing stuff
 
-		background(0, 255, 255);
+		image(background, 0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 
 		pushMatrix();
 
@@ -176,12 +183,12 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 
 		scale(ratioX, ratioY);
 
-		fill(100);
+		fill(225, 127, 80);
 		rect(0, 550, 800, 50);
 
 		for (int i = 1; i < ingredients.size(); i++) {
 			rect(0, 550, 800, 50);
-			fill(200);
+			fill(225, 127, 80);
 			rect(600, 0, 200, 800);
 		}
 
@@ -228,8 +235,10 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 			player.walk(-1);
 		if (isPressed(KeyEvent.VK_RIGHT))
 			player.walk(1);
-		if (isPressed(KeyEvent.VK_UP))
+		if (isPressed(KeyEvent.VK_UP)) {
 			player.jump();
+		//	soundEffects.playSoundEffect(1);
+		}
 		if (isPressed(49)) {
 			player.updateCurrentOrder(0);
 			player.updateCurrentDrink(0);
@@ -279,8 +288,10 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		if (currentOrder.getLength() >= currentDrink.getLength())
 			for (int i = 0; i < currentDrink.getLength(); i++) {
 				if (currentOrder.getRecipe().get(i).getIngredientName() == currentDrink.getDrinkComponents().get(i)
-						.getIngredientName())
+						.getIngredientName()) {
 					image(assets.get(1), 605f, 30f + 20 * i, 10f, 10f);
+					//soundEffects.playSoundEffect(0);
+				}
 				else
 					image(assets.get(2), 605f, 30f + 20 * i, 10f, 10f);
 			}
