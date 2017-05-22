@@ -37,19 +37,26 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		p.add(Box.createVerticalStrut(200));   // Move down by 300 pixels  
 		//p2.add(Box.createHorizontalStrut(200));
 		
-		ImageIcon icon = new ImageIcon("image/Latte.png","Java");
 		background = new ImageIcon("image/Title Screen.png");
 
-		JButton button = new JButton("Start", icon);
+		JButton button = new JButton("", new ImageIcon("image/StartButton.png","Java"));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.setBackground(new Color(225, 127, 80));
-		button.setOpaque(true);
+		button.setOpaque(false);
 		button.setBorderPainted(false);
 		
-		JButton endless = new JButton("Endless");
-		JButton instructions = new JButton("Instructions");
-		JButton quit = new JButton("Quit");
-		JButton leaderboard = new JButton("Leaderboard");
+		JButton endless = new JButton("", new ImageIcon("image/EndlessButton.png","Java"));
+		endless.setOpaque(false);
+		endless.setBorderPainted(false);
+		JButton instructions = new JButton("", new ImageIcon("image/InstructionsButton.png","Java"));
+		instructions.setOpaque(false);
+		instructions.setBorderPainted(false);
+		JButton quit = new JButton("", new ImageIcon("image/QuitButton.png","Java"));
+		quit.setOpaque(false);
+		quit.setBorderPainted(false);
+		JButton leaderboard = new JButton("", new ImageIcon("image/LeaderboardButton.png","Java"));
+		leaderboard.setOpaque(false);
+		leaderboard.setBorderPainted(false);
 
 	    Font font = new Font("Jokerman", Font.BOLD, 65);
 	    Font littleFont = new Font("Jokerman", Font.BOLD, 20);
@@ -109,8 +116,8 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		
 		//g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
 		//g.drawString("Brisk Barista", 260, 200);
-		g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		g.drawString("Brisk Barista", 110, 150);
+	//	g.setFont(new Font("Jokerman", Font.BOLD, 85));
+	//	g.drawString("Brisk Barista", 110, 150);
 	//	g.setFont(new Font("Jokerman", Font.BOLD, 85));
 	//	g.drawString("Brisk Barista", 130, 200);
 		
