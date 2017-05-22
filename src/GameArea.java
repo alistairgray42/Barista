@@ -39,7 +39,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private ArrayList<PImage> assets;
 	private ArrayList<FallingIngredient> ingredients;
 
-	private Ingredient[] base;
+	private Ingredient[] base;//
 	private Ingredient[] milk;
 	private Ingredient[] topping;
 	private Ingredient espresso;
