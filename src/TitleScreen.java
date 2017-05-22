@@ -27,22 +27,53 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		this.w = w;
 	//	background = bgImg;
 		JPanel p = new JPanel();
+		JPanel p2 = new JPanel();
+		
 		p.setBackground(new Color(0,0,0,0));  // Panel is transparent
+		p2.setBackground(new Color(0,0,0,0));
 		
 		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));	
-		p.add(Box.createVerticalStrut(250));   // Move down by 300 pixels  
+		p2.setLayout(new BoxLayout(p2,BoxLayout.X_AXIS));	
+		p.add(Box.createVerticalStrut(200));   // Move down by 300 pixels  
+		//p2.add(Box.createHorizontalStrut(200));
 		
 		ImageIcon icon = new ImageIcon("image/Latte.png","Java");
 		JButton button = new JButton("Start", icon);
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		JButton endless = new JButton("Endless");
+		JButton instructions = new JButton("Instructions");
+		JButton quit = new JButton("Quit");
+		JButton leaderboard = new JButton("Leaderboard");
+
 	    Font font = new Font("Jokerman", Font.BOLD, 65);
-	   
+	    Font littleFont = new Font("Jokerman", Font.BOLD, 20);
+	    
 		button.setFont(font);
 		button.addActionListener(this);
 		
-
+		endless.setFont(littleFont);
+		endless.addActionListener(this);
+		
+		instructions.setFont(littleFont);
+		instructions.addActionListener(this);
+		
+		leaderboard.setFont(littleFont);
+		leaderboard.addActionListener(this);
+		
+		quit.setFont(littleFont);
+		quit.addActionListener(this);
+		
 		p.add(button);
+		p.add(p2);
+
+		p2.add(endless);
+		p2.add(instructions);
+		p2.add(leaderboard);
+		p2.add(quit);
+
 		add(p);
+
 		
 		/*
 		sound = new JayLayer("audio/","audio/",false);
@@ -72,14 +103,22 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		//g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
 		//g.drawString("Brisk Barista", 260, 200);
 		g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		g.drawString("Brisk Barista", 130, 200);
+		g.drawString("Brisk Barista", 110, 150);
 		
 		g2.setTransform(af);
 		
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
-		w.changePanel();
+		
+		String str = e.getActionCommand();
+		
+		if (str.equals("Start")) w.changePanel(1);
+		else if (str.equals("Endless")) w.changePanel(2);
+		else if (str.equals("Instructions")) w.changePanel(3);
+		else if (str.equals("Leaderboard")) w.changePanel(4);
+		else if (str.equals("Quit")) w.quit();
+
 		//sound.setRandomizePlayOrder(true);
 	}
 

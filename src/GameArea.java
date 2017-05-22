@@ -47,11 +47,15 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private int score;
 	private int level;
 	
+	private Main main;
+	
 	private JayLayer sound;
 	private boolean[] completed = {false, false, false, false};
+	
+	private boolean endless;
 
 
-	public GameArea() {
+	public GameArea(Main main, boolean endless) {
 		super();
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
@@ -61,6 +65,9 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		level = 1;
 		
 		sound = new JayLayer("audio/","audio/",false);
+		
+		this.endless = endless;
+		this.main = main;
 	}
 
 	/*
@@ -190,20 +197,27 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 				ingredients.remove(i);
 				if (player.checkCompletion())
 				{
-					score += level * 100;
-					level++;
-					player.getOrders().add(Order.randomOrder(level));
-					player.getOrders().add(Order.randomOrder(level));
-					player.getOrders().add(Order.randomOrder(level));
-					player.getOrders().add(Order.randomOrder(level));
-					
-					player.getOrders().get(0).resetTime();
-					player.getOrders().get(1).resetTime();
-					player.getOrders().get(2).resetTime();
-					player.getOrders().get(3).resetTime();
+					if (completed[0] && completed[1] && completed[2] && completed[3])
+					{
+						level++;
+
+						player.getOrders().add(Order.randomOrder(level));
+						player.getOrders().add(Order.randomOrder(level));
+						player.getOrders().add(Order.randomOrder(level));
+						player.getOrders().add(Order.randomOrder(level));
+						
+						player.getOrders().get(0).resetTime();
+						player.getOrders().get(1).resetTime();
+						player.getOrders().get(2).resetTime();
+						player.getOrders().get(3).resetTime();
+					}
+					score += level * 2000;
+					score += player.getOrders().get(player.getCurrentOrder()).checkTime();
 					completed[player.getCurrentOrder()] = true;
 				}
 			}
+			
+			if (player.getOrders().get(player.getCurrentOrder()).getTime() <= 0) fail();
 		}
 
 		popMatrix();
@@ -247,7 +261,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		fill(100);
 		text("Order #:", 605, 20);
 		text(player.getCurrentOrder() + 1, 680, 20);
-		if (completed[player.getCurrentOrder()]) image(assets.get(1), 690f, 20f);
+		if (completed[player.getCurrentOrder()]) image(assets.get(1), 700f, 5f, 20f, 20f);
 		
 		/* 
 		 * text("Next Ingredient: ", 605, 40);
@@ -330,6 +344,12 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		addIngredient(f);
 	}
 
+	private void fail()
+	{
+		if (endless) main.changePanel(2);
+		else main.changePanel(3);
+	}
+	
 	@Override
 	public void musicStarted() {
 		// TODO Auto-generated method stub

@@ -142,6 +142,11 @@ public class Order {
 		return o;
 	}
 	
+	public int getTime()
+	{
+		return time;
+	}
+	
 	public int checkTime()
 	{
 		time--;

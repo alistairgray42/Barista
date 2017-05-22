@@ -5,6 +5,7 @@ import processing.awt.PSurfaceAWT;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
 
 public class Main {
 
@@ -21,7 +22,16 @@ public class Main {
 	 * Mostly pillaged code to set up a CardLayout with title and game
 	 */
 	public Main() {
-		panel2 = new GameArea();
+		
+		/* In the CardPanel:
+		 * 1: title
+		 * 2: game
+		 * 3: endless
+		 * 4: instructions
+		 * 5: endscreen
+		 */
+		
+		panel2 = new GameArea(this, false);
 		panel2.runMe();
 		
 		PSurfaceAWT surf = (PSurfaceAWT) panel2.getSurface();
@@ -30,7 +40,8 @@ public class Main {
 		window.setTitle("1337 Baristing");
 
 		window.setBounds(0,0,800,600);
-		window.setMinimumSize(new Dimension(100,100));
+		window.setMinimumSize(new Dimension(800,600));
+		window.setMaximumSize(new Dimension(800, 600));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(true);
 
@@ -41,7 +52,6 @@ public class Main {
 	    window.getContentPane().removeAll();
 	    
 		panel1 = new TitleScreen(this); //(new ImageIcon("/Barista/image/CashRegistar.png")).getImage()   
-	    panel2 = new GameArea();
 	    	    
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(processingCanvas,"2");
@@ -60,9 +70,15 @@ public class Main {
 		OrderGenerator o = new OrderGenerator(); 
 	}
   
-	public void changePanel() {
-		((CardLayout)cardPanel.getLayout()).next(cardPanel);
+	public void changePanel(int times) 
+	{
+		for (int i = 0; i < times; i++) ((CardLayout)cardPanel.getLayout()).next(cardPanel);
 		processingCanvas.requestFocus();
+	}
+	
+	protected void quit()
+	{
+		window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
 	}
   
 }
