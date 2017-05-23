@@ -37,23 +37,34 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		p.add(Box.createVerticalStrut(200));   // Move down by 300 pixels  
 		//p2.add(Box.createHorizontalStrut(200));
 		
-		ImageIcon icon = new ImageIcon("image/Latte.png","Java");
 		background = new ImageIcon("image/Title Screen.png");
 
-		JButton button = new JButton("Start", icon);
+		JButton button = new JButton("Start", new ImageIcon("image/StartButton.png","Java"));
 		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		button.setBackground(new Color(225, 127, 80));
-		button.setOpaque(true);
+		button.setOpaque(false);
 		button.setBorderPainted(false);
 		
-		JButton endless = new JButton("Endless");
-		JButton instructions = new JButton("Instructions");
-		JButton quit = new JButton("Quit");
-		JButton leaderboard = new JButton("Leaderboard");
+		JButton endless = new JButton("Endless", new ImageIcon("image/EndlessButton.png","Java"));
+		endless.setBackground(new Color(225, 127, 80));
+		endless.setOpaque(false);
+		endless.setBorderPainted(false);
+		JButton instructions = new JButton("Instructions", new ImageIcon("image/InstructionsButton.png","Java"));
+		instructions.setBackground(new Color(225, 127, 80));
+		instructions.setOpaque(false);
+		instructions.setBorderPainted(false);
+		JButton quit = new JButton("Quit", new ImageIcon("image/QuitButton.png","Java"));
+		quit.setBackground(new Color(225, 127, 80));
+		quit.setOpaque(false);
+		quit.setBorderPainted(false);
+		JButton leaderboard = new JButton("Leaderboard", new ImageIcon("image/LeaderboardButton.png","Java"));
+		leaderboard.setBackground(new Color(225, 127, 80));
+		leaderboard.setOpaque(false);
+		leaderboard.setBorderPainted(false);
 
 	    Font font = new Font("Jokerman", Font.BOLD, 65);
-	    Font littleFont = new Font("Jokerman", Font.BOLD, 20);
-		button.setFont(font);
+	    Font littleFont = new Font("Jokerman", Font.BOLD, 0);
+		button.setFont(littleFont);
 		button.addActionListener(this);
 		
 		endless.setFont(littleFont);
@@ -77,21 +88,10 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		p2.add(quit);
 
 		add(p);
-
-		
-		/*
-		sound = new JayLayer("audio/","audio/",false);
-		sound.addPlayList();
-		sound.addSong(0, "JazzMusic.mp3");
-		sound.addJayLayerListener(this);
-		*/
 	}
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (background == null) {
-			System.out.println("test");
-		}
 		g.drawImage(background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 		//JLabel contentPane = new JLabel();
 		//contentPane.setIcon(new ImageIcon("/Barista/image/CashRegistar.png"));
@@ -109,8 +109,8 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 		
 		//g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
 		//g.drawString("Brisk Barista", 260, 200);
-		g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		g.drawString("Brisk Barista", 110, 150);
+	//	g.setFont(new Font("Jokerman", Font.BOLD, 85));
+	//	g.drawString("Brisk Barista", 110, 150);
 	//	g.setFont(new Font("Jokerman", Font.BOLD, 85));
 	//	g.drawString("Brisk Barista", 130, 200);
 		
@@ -120,6 +120,7 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 
 	public void actionPerformed(ActionEvent e) {
 		
+		Object o = e.getSource();
 		String str = e.getActionCommand();
 		
 		if (str.equals("Start")) w.changePanel(1);

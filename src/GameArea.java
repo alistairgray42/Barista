@@ -49,6 +49,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private Main main;
 	
 	private JayLayer sound;
+	String[] soundEffects;
 //	private JayLayer soundEffects;
 	private boolean[] completed = {false, false, false, false};
 	
@@ -66,6 +67,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		level = 1;
 		
 		sound = new JayLayer("audio/","audio/",false);
+		soundEffects = new String[]{"CollectingIngredients.wav","Jumping.wav","Fail.mp3"};
 		
 		this.endless = endless;
 		this.main = main;
@@ -285,9 +287,10 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 			text(currentOrder.getRecipe().get(i).getIngredientName(), 615, 40 + 20 * i);
 		}
 
-		if (currentOrder.getLength() >= currentDrink.getLength())
+		//if (currentOrder.getLength() >= currentDrink.getLength())
 			for (int i = 0; i < currentDrink.getLength(); i++) {
-				if (currentOrder.getRecipe().get(i).getIngredientName() == currentDrink.getDrinkComponents().get(i)
+				if (i >= currentOrder.getLength()) break;
+				else if (currentOrder.getRecipe().get(i).getIngredientName() == currentDrink.getDrinkComponents().get(i)
 						.getIngredientName()) {
 					image(assets.get(1), 605f, 30f + 20 * i, 10f, 10f);
 					//soundEffects.playSoundEffect(0);
