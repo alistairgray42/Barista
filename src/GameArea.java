@@ -293,7 +293,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 				else if (currentOrder.getRecipe().get(i).getIngredientName() == currentDrink.getDrinkComponents().get(i)
 						.getIngredientName()) {
 					image(assets.get(1), 605f, 30f + 20 * i, 10f, 10f);
-					//soundEffects.playSoundEffect(0);
+					//soundEffects.playSoundEffect(0); 
 				}
 				else
 					image(assets.get(2), 605f, 30f + 20 * i, 10f, 10f);
