@@ -51,20 +51,6 @@ public class Order {
 		}
 	}
 
-	/*
-	 * public static void initializeEspresso(Ingredient ingredient){ >>>>>>>
-	 * branch 'master' of https://github.com/alistairgray42/Barista.git espresso
-	 * = ingredient; }
-	 * 
-	 * public static void initializeBase(Ingredient[] ingredient){ base =
-	 * ingredient; }
-	 * 
-	 * public static void initializeMilk(Ingredient[] ingredient){ milk =
-	 * ingredient; }
-	 * 
-	 * public static void initializeTopping(Ingredient[] ingredient){ topping =
-	 * ingredient; }
-	 */
 
 	/**
 	 * Randomly generates recipes with an increasing number and variety of
