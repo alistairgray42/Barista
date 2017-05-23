@@ -26,7 +26,7 @@ public class InstructionScreen extends JPanel implements ActionListener {
 	 * @param w
 	 */
 	public InstructionScreen(Main w) { // , Image bgImg
-		this.w = w;
+		this.w = w;/*
 		JPanel p = new JPanel();
 		JPanel p2 = new JPanel();
 
@@ -37,8 +37,8 @@ public class InstructionScreen extends JPanel implements ActionListener {
 		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
 		p.add(Box.createVerticalStrut(200)); // Move down by 300 pixels
 		// p2.add(Box.createHorizontalStrut(200));
-
-		background = new ImageIcon("image/Background.png");
+*/
+		background = new ImageIcon("image/Title Screen.png");
 
 		/*
 		 * JButton start = new JButton("Start", new
@@ -65,7 +65,7 @@ public class InstructionScreen extends JPanel implements ActionListener {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
-		g.drawImage(new ImageIcon("image/Controls.png").getImage(), 10, 200, 300, 250, this);
+		g.drawImage(new ImageIcon("image/Controls.png").getImage(), 10, 10, 700, 525, this);
 
 		double ratioX = getWidth() / 800.0;
 		double ratioY = getHeight() / 600.0;
