@@ -73,12 +73,6 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		this.main = main;
 //		soundEffects = new JayLayer("audio/","audio/",false);
 	}
-
-	/*
-	 * public void setup(){
-	 * 
-	 * }
-	 */
 	/*
 	 * public static void PlaySound() { InputStream in; try { in = new
 	 * FileInputStream(new File("audio/JazzMusic.mp3")); AudioStream audios =
