@@ -157,7 +157,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		sound.addJayLayerListener(this);
 		sound.nextSong();
 		
-//		soundEffects.addSoundEffect("CollectingCoins.wav");
+//		soundEffects.addSoundEffect("CollectingCoins.wav"); 
 //		soundEffects.addSoundEffect("Jumping.wav");
 //		soundEffects.addJayLayerListener(this); 
 		
