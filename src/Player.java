@@ -178,7 +178,7 @@ public class Player extends MovingImage {
 		// ***********Y AXIS***********
 
 		yVelocity += gravity; // GRAVITY
-		if (y >= 450) yVelocity = 0;
+		if (y >= 480) yVelocity = 0;
 		if (isJumping) 
 		{
 			yVelocity = - 10 * jumpStrength;

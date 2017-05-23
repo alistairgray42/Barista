@@ -57,8 +57,9 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	private PImage background;
 
 
-	public GameArea(Main main, boolean endless) {
+	public GameArea(Main main) {
 		super();
+		endless = false;
 		assets = new ArrayList<PImage>();
 		keys = new ArrayList<Integer>();
 		ingredients = new ArrayList<FallingIngredient>();
@@ -69,7 +70,6 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		sound = new JayLayer("audio/","audio/",false);
 		soundEffects = new String[]{"CollectingIngredients.wav","Jumping.wav","Fail.mp3"};
 		
-		this.endless = endless;
 		this.main = main;
 //		soundEffects = new JayLayer("audio/","audio/",false);
 	}
@@ -150,9 +150,7 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		assets.add(loadImage("image/x.png"));
 
 		newPlayer();
-		
-		new Timer(1000, this).start();
-		
+				
 		sound.addPlayList();
 		sound.addSong(0, "JazzMusic.mp3");
 		sound.changePlayList(0);
@@ -184,15 +182,10 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		screenRect = new Rectangle2D.Double(0, 0, width, height);
 
 		scale(ratioX, ratioY);
-
+		
+		//rect(0, 550, 800, 50);
 		fill(225, 127, 80);
-		rect(0, 550, 800, 50);
-
-		for (int i = 1; i < ingredients.size(); i++) {
-			rect(0, 550, 800, 50);
-			fill(225, 127, 80);
-			rect(600, 0, 200, 800);
-		}
+		rect(600, 0, 200, 800);
 
 		for (int i = 0; i < ingredients.size(); i++) {
 			FallingIngredient f = ingredients.get(i);
@@ -221,12 +214,12 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 						player.getOrders().get(3).resetTime();
 					}
 					score += level * 2000;
-					score += player.getOrders().get(player.getCurrentOrder()).checkTime();
+					if (!endless) score += player.getOrders().get(player.getCurrentOrder()).checkTime();
 					completed[player.getCurrentOrder()] = true;
 				}
 			}
 			
-			if (player.getOrders().get(player.getCurrentOrder()).getTime() <= 0) fail();
+			if (!endless && player.getOrders().get(player.getCurrentOrder()).getTime() <= 0) fail();
 		}
 
 		popMatrix();
@@ -305,8 +298,12 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		text("Score: ", 605, 400);
 		text(score, 680, 400);
 		
-		text("Time: ", 605, 500);
-		text(player.getOrders().get(player.getCurrentOrder()).checkTime(), 680, 500);
+		if (!endless)
+		{
+			text("Time: ", 605, 500);
+			text(player.getOrders().get(player.getCurrentOrder()).checkTime(), 680, 500);
+		}
+		
 		
 		text("Level: ", 605, 450);
 		text(level, 680, 450);
@@ -358,10 +355,19 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 		addIngredient(f);
 	}
 
+	public void setEndless(boolean that)
+	{
+		endless = that;
+	}
+	
+	public boolean getEndless()
+	{
+		return endless;
+	}
+	
 	private void fail()
 	{
-		if (endless) main.changePanel(2);
-		else main.changePanel(3);
+		main.changePanel(2);
 	}
 	
 	@Override

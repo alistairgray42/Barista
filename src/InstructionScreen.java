@@ -38,7 +38,7 @@ public class InstructionScreen extends JPanel implements ActionListener {
 		p.add(Box.createVerticalStrut(200)); // Move down by 300 pixels
 		// p2.add(Box.createHorizontalStrut(200));
 
-		background = new ImageIcon("image/Title Screen.png");
+		background = new ImageIcon("image/Background.png");
 
 		/*
 		 * JButton start = new JButton("Start", new
@@ -89,6 +89,8 @@ public class InstructionScreen extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 
+		w.changePanel(0);
+		/*
 		Object o = e.getSource();
 		String str = e.getActionCommand();
 
@@ -102,7 +104,7 @@ public class InstructionScreen extends JPanel implements ActionListener {
 			w.changePanel(4);
 		else if (str.equals("Quit"))
 			w.quit();
-
+*/
 		// sound.setRandomizePlayOrder(true);
 	}
 

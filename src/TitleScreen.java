@@ -119,14 +119,12 @@ public class TitleScreen extends JPanel implements ActionListener, JayLayerListe
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
-		Object o = e.getSource();
 		String str = e.getActionCommand();
 		
 		if (str.equals("Start")) w.changePanel(1);
-		else if (str.equals("Endless")) w.changePanel(2);
-		else if (str.equals("Instructions")) w.changePanel(3);
-		else if (str.equals("Leaderboard")) w.changePanel(4);
+		else if (str.equals("Endless")) w.toggleEndless();
+		else if (str.equals("Instructions")) w.changePanel(2);
+		else if (str.equals("Leaderboard")) w.changePanel(3);
 		else if (str.equals("Quit")) w.quit();
 
 		//sound.setRandomizePlayOrder(true);

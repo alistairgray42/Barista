@@ -11,7 +11,6 @@ import java.awt.event.WindowEvent;
 public class Main {
 
 	private JFrame window;
-	
 	private JPanel cardPanel;
 	
 	private TitleScreen panel1;    
@@ -29,16 +28,17 @@ public class Main {
 		/* In the CardPanel:
 		 * 1: title
 		 * 2: game
-		 * 3: endless
-		 * 4: instructions
-		 * 5: endscreen
+		 * : endless
+		 * 3: instructions
+		 * 4: endscreen/leaderboard
 		 */
 		
-		panel2 = new GameArea(this, false);
+		panel2 = new GameArea(this);
 		panel2.runMe();
 		
 		PSurfaceAWT surf = (PSurfaceAWT) panel2.getSurface();
 		processingCanvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+		
 		window = (JFrame)processingCanvas.getFrame();
 		window.setTitle("Brisk Barista");
 
@@ -69,21 +69,23 @@ public class Main {
 	    
 	    window.add(cardPanel, 0);
 	    window.revalidate();
-	    
 	}
 	
-
 	public static void main(String[] args)
 	{
 		Main m = new Main();
-		
-		OrderGenerator o = new OrderGenerator(); 
 	}
   
 	public void changePanel(int times) 
 	{
+		if (times == 0) ((CardLayout)cardPanel.getLayout()).first(cardPanel);
 		for (int i = 0; i < times; i++) ((CardLayout)cardPanel.getLayout()).next(cardPanel);
 		processingCanvas.requestFocus();
+	}
+	
+	public void toggleEndless()
+	{
+		panel2.setEndless(!panel2.getEndless());
 	}
 	
 	protected void quit()
