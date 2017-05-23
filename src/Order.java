@@ -11,8 +11,8 @@ public class Order {
 			new Ingredient("Chocolate Syrup", "Mocha.png"),
 			//new Ingredient("Matcha", "Matcha.png"), 
 			new Ingredient("Honey", "Honey.png"),
-			new Ingredient("Caramel Syrup", "Caramel.png"), 
-			new Ingredient("Vanilla Syrup", "Vanilla.png") };
+			new Ingredient("Caramel", "Caramel.png"), 
+			new Ingredient("Vanilla", "Vanilla.png") };
 
 	public static final Ingredient[] milk = new Ingredient[] { 
 			//new Ingredient("Half-and-Half", "HalfNHalf.png"),
@@ -26,8 +26,8 @@ public class Order {
 			new Ingredient("Cinnamon", "Cinnamon.png"), 
 			new Ingredient("Chocolate Syrup", "Mocha.png"),
 			//new Ingredient("Matcha", "Matcha.png"), 
-			new Ingredient("Caramel Syrup", "Caramel.png"),
-			new Ingredient("Vanilla Syrup", "Vanilla.png") };
+			new Ingredient("Caramel", "Caramel.png"),
+			new Ingredient("Vanilla", "Vanilla.png") };
 
 	private boolean hasIce;
 
