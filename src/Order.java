@@ -155,6 +155,6 @@ public class Order {
 	
 	public void resetTime()
 	{
-		time = 120;
+		time = 12000;
 	}
 }
