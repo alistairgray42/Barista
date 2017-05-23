@@ -67,7 +67,7 @@ public class Main {
 	    window.setLayout(new BorderLayout());
 	    
 	    window.add(cardPanel, 0);
-	    window.revalidate();
+	    window.revalidate();//
 	}
 	
 	public static void main(String[] args)
