@@ -9,7 +9,7 @@ public class Order {
 
 	public static final Ingredient[] base = new Ingredient[] { 
 			new Ingredient("Chocolate Syrup", "Mocha.png"),
-			//new Ingredient("Matcha", "Matcha.png"), 
+			//new Ingredient("Matcha", "Matcha.png"),  
 			new Ingredient("Honey", "Honey.png"),
 			new Ingredient("Caramel", "Caramel.png"), 
 			new Ingredient("Vanilla", "Vanilla.png") };
