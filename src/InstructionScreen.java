@@ -46,17 +46,6 @@ public class InstructionScreen extends JPanel implements ActionListener {
 		quit.addActionListener(this);
 		p.add(quit);
 		add(p);
-
-		/*
-		 * start.setFont(littleFont); start.addActionListener(this);
-		 * 
-		 * main.setFont(littleFont); main.addActionListener(this);
-		 * 
-		 * 
-		 * p.add(start); p.add(p2);
-		 * 
-		 * p2.add(main); add(p);
-		 */
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -72,13 +61,6 @@ public class InstructionScreen extends JPanel implements ActionListener {
 		AffineTransform af = g2.getTransform();
 
 		g2.scale(ratioX, ratioY);
-
-		// g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
-		// g.drawString("Brisk Barista", 260, 200);
-		// g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		// g.drawString("Brisk Barista", 110, 150);
-		// g.setFont(new Font("Jokerman", Font.BOLD, 85));
-		// g.drawString("Brisk Barista", 130, 200);
 
 		g2.setTransform(af);
 
