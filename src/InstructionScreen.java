@@ -26,29 +26,26 @@ public class InstructionScreen extends JPanel implements ActionListener {
 	 * @param w
 	 */
 	public InstructionScreen(Main w) { // , Image bgImg
-		this.w = w;/*
+		this.w = w;
 		JPanel p = new JPanel();
-		JPanel p2 = new JPanel();
 
 		p.setBackground(new Color(0, 0, 0, 0)); // Panel is transparent
-		p2.setBackground(new Color(0, 0, 0, 0));
 
-		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-		p2.setLayout(new BoxLayout(p2, BoxLayout.X_AXIS));
-		p.add(Box.createVerticalStrut(200)); // Move down by 300 pixels
-		// p2.add(Box.createHorizontalStrut(200));
-*/
+		p.setLayout(new BoxLayout(p, BoxLayout.X_AXIS));
+		p.add(Box.createHorizontalStrut(600)); // Move down by 300 pixels
+
 		background = new ImageIcon("image/Title Screen.png");
 
-		/*
-		 * JButton start = new JButton("Start", new
-		 * ImageIcon("image/Start.png","Java")); start.setBackground(new
-		 * Color(225, 127, 80)); start.setOpaque(false);
-		 * start.setBorderPainted(false); JButton main = new
-		 * JButton("Main Menu", new ImageIcon("image/Main.png","Java"));
-		 * main.setBackground(new Color(225, 127, 80)); main.setOpaque(false);
-		 * main.setBorderPainted(false);
-		 */
+
+		JButton quit = new JButton("Quit");
+		quit.setBackground(new Color(225, 127, 80));
+		quit.setOpaque(true);
+		quit.setBorderPainted(false); 
+
+		quit.setFont(new Font("Jokerman", Font.BOLD, 30));
+		quit.addActionListener(this);
+		p.add(quit);
+		add(p);
 
 		/*
 		 * start.setFont(littleFont); start.addActionListener(this);
@@ -90,22 +87,6 @@ public class InstructionScreen extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		w.changePanel(0);
-		/*
-		Object o = e.getSource();
-		String str = e.getActionCommand();
-
-		if (str.equals("Start"))
-			w.changePanel(1);
-		else if (str.equals("Endless"))
-			w.changePanel(2);
-		else if (str.equals("Instructions"))
-			w.changePanel(3);
-		else if (str.equals("Leaderboard"))
-			w.changePanel(4);
-		else if (str.equals("Quit"))
-			w.quit();
-*/
-		// sound.setRandomizePlayOrder(true);
 	}
 
 }
