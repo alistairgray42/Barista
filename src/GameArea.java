@@ -2,10 +2,15 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -360,6 +365,42 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 	
 	private void fail()
 	{
+		try
+		{
+			int[] ints = new int[5];
+			String[] strs = new String[5];
+			Scanner in = new Scanner(new FileReader("leaderboard.txt"));
+			for (int i = 0; i < 5 && in.hasNextLine(); i++)
+			{
+				String s = in.nextLine();
+				ints[i] = Integer.parseInt(s.substring(s.indexOf(",") + 2));
+				strs[i] = s.substring(0, s.indexOf(","));
+				if (ints[i] < score)
+				{
+					for (int j = 4; j > i; j++)
+					{
+						ints[j] = ints[j - 1];
+						strs[j] = strs[j - 1];
+					}
+					ints[i] = score;
+					strs[i] = "player";
+				}
+			}
+			in.close();
+			
+			FileWriter fw = new FileWriter("leaderboard.txt");
+			for (int i = 0; i < 5 && strs[i] != null; i++)
+			{
+				fw.write(strs[i] + ", " + ints[i]);
+			}
+			fw.close();
+			
+		}
+		catch (IOException io)
+		{
+			
+		}
+		
 		main.changePanel(2);
 	}
 	
