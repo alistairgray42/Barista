@@ -183,7 +183,6 @@ public class GameArea extends PApplet implements JayLayerListener, ActionListene
 
 		scale(ratioX, ratioY);
 		
-		//rect(0, 550, 800, 50);
 		fill(225, 127, 80);
 		rect(600, 0, 200, 800);
 
